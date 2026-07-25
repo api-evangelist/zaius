@@ -1,0 +1,127 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Objects API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Objects
+paths:
+  /objects/{object_name}:
+    post:
+      tags:
+      - Objects
+      summary: Update Object
+      description: Update an object (for example, Concert Tickets or Reviews). Use the Objects endpoint to update the top-level order summary fields without generating events.
+      operationId: update-object
+      parameters:
+      - in: path
+        name: object_name
+        required: true
+        schema:
+          type: string
+        description: name of the object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Object'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                - primary_key: 123
+                  field_example: true
+                - primary_key: 456
+                  field_example: false
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/40xResponse'
+              example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403Response'
+              example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/40xResponse'
+              example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+components:
+  schemas:
+    40xResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  event:
+                    type: integer
+                  message:
+                    type: string
+    403Response:
+      type: object
+      properties:
+        message:
+          type: string
+    Object:
+      type: object
+      additionalProperties:
+        type: string
+        description: any other field within the object that you wish to update associated with the primary key
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

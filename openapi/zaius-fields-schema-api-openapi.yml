@@ -1,0 +1,231 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Fields schema API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Fields schema
+paths:
+  /schema/objects/{object_name}/fields:
+    post:
+      tags:
+      - Fields schema
+      summary: Create field
+      description: Create a field on an object in Optimizely Data Platform (ODP).
+      operationId: create-field
+      parameters:
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Field'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                  name: field_name
+                  type: number
+                  display_name: Display Name
+                  public_read: false
+                  description: Description of field
+              PII Access Policies:
+                description: Enable the access policy of this field as Personal Identifiable Information. `suggestible` is used to retrieve autosuggestions for this field.
+                value:
+                  name: new_pii_field
+                  display_name: New PII Field
+                  description: This is a new Field with PII access policies enabled
+                  type: string
+                  access_policies:
+                    PII:
+                      enable: true
+                      suggestible: true
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+              example:
+                name: field_name
+                display_name: Display Name
+                description: Description of field
+                type: number
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+    get:
+      tags:
+      - Fields schema
+      summary: List fields
+      description: List the details of all fields for a specific object.
+      operationId: list-fields
+      parameters:
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Field'
+              example:
+                name: field_name
+                type: number
+                display_name: Display Name
+                auto: true
+                description: The venue that the user visisted.
+                created_by: zaius
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /schema/objects/{object_name}/fields/{field_name}:
+    get:
+      tags:
+      - Fields schema
+      summary: Get field
+      description: List the details of a single field for a specific object.
+      operationId: get-field
+      parameters:
+      - name: field_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the field.
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Field'
+              example:
+                name: tickets
+                display_name: Tickets
+                alias: ticket
+                fields:
+                - name: field_name
+                  type: number
+                  display_name: Display Name
+                  primary: true
+                relations:
+                - name: my_relation
+                  display_name: My Relationship
+                  child_object: target_object_name
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+components:
+  schemas:
+    Field:
+      required:
+      - name
+      - display_name
+      - type
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the field (for example, `ticket_id`).
+        display_name:
+          type: string
+          description: The human-readable name of the field (for example, Ticket ID).
+        public_read:
+          type: boolean
+          description: Enable access with the API public key.
+          default: false
+        description:
+          type: array
+          description: Detailed description of the field's purpose.
+          items:
+            type: string
+        type:
+          type: string
+          description: An array of relations field data type. Options are `number`, `timestamp`, `string`, `boolean`.
+          enum:
+          - number
+          - timestamp
+          - string
+          - boolean
+        access_policies:
+          type: object
+          description: Set access policies, like PII, for the field.
+          properties:
+            PII:
+              type: object
+              description: Mark the field as Personally Identifiable Information (PII).
+              properties:
+                enable:
+                  type: boolean
+                  description: Set to `true` to mark the field as Personally Identifiable Information (PII); `false` to indicate the field is not PII. Default is `true`.
+                suggestible:
+                  type: boolean
+                  description: Set to `true` to enable autosuggestions for the field; `false` to disable autosuggestions. Default is `false`.
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

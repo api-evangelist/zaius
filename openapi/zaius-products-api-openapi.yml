@@ -1,0 +1,129 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Products API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Products
+paths:
+  /objects/products:
+    post:
+      tags:
+      - Products
+      summary: Update Products
+      description: Update products with new metadata as your inventory updates.
+      operationId: update-products
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/Product'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                - product_id: 123
+                  name: Red Shirt
+                - product_id: 456
+                  name: Blue Shirt
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/40xResponse'
+              example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/403Response'
+              example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/40xResponse'
+              example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+components:
+  schemas:
+    40xResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  event:
+                    type: integer
+                  message:
+                    type: string
+    403Response:
+      type: object
+      properties:
+        message:
+          type: string
+    Product:
+      required:
+      - product_id
+      type: object
+      properties:
+        product_id:
+          type: string
+          description: the product_id associated with the product
+        '{product_field}':
+          type: object
+          description: Any other product field. Refer to the product reference above for the full list of available fields.
+          additionalProperties:
+            type: string
+            description: Any other product field. Refer to the product reference above for the full list of available fields.
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,136 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Recommendations API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Recommendations
+paths:
+  /recommendations/products:
+    get:
+      tags:
+      - Recommendations
+      summary: Get Recommended Products
+      description: Get recommendations for a customer or product.
+      operationId: get-recommended-products
+      parameters:
+      - name: '{identifier}=identifier_value'
+        in: query
+        description: 'The identifier type and its value. Acceptable identifier types include: `vuid`, `email`, `zaiusalias`, and `customer_id`.'
+        schema:
+          type: string
+        examples:
+          Email Identifier:
+            description: Email Identifier
+            value:
+              email: sample@test.com
+      - name: product_ids
+        in: query
+        description: A comma-separated list of product IDs. Using the `product_ids` parameter allows you to generate recommended products based on the product IDs passed in.
+        schema:
+          type: string
+      - name: type
+        in: query
+        description: 'The type of recommendation requested. Acceptable values are: `personal` and `contextual`.'
+        schema:
+          type: string
+          enum:
+          - personal
+          - contextual
+      - name: criteria
+        in: query
+        description: Filter criteria applied to the recommendations returned. you can use any field on the product schema to filter. See above for the filter construct.
+        schema:
+          type: object
+      - name: sort_by
+        in: query
+        description: Product field to sort by, which can be any base or custom field defined in your Product schema. Default sort is highest to lowest recommendation rank. Changing this will not change which products are returned, only the order in which they display in the array.
+        schema:
+          type: string
+      - name: order
+        in: query
+        description: Options are `asc` and `desc`. Order in which to sort the resulting products. Changing this will not change which products are returned, only the order in which they display in the array. This will not change the order of products if there is no sort specified.
+        schema:
+          type: string
+          default: asc
+          enum:
+          - asc
+          - desc
+      - name: limit
+        in: query
+        description: The number of products to return. Must be an integer value from 1 to 100. Default is 10.
+        schema:
+          type: string
+          default: 10
+          minimum: 1
+          maximum: 100
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Recommendation'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+components:
+  schemas:
+    Recommendation:
+      type: object
+      properties:
+        product_id:
+          type: string
+          example: 1234BLK
+        name:
+          type: string
+          example: Basics - Black
+        brand:
+          type: string
+          example: Jungle James Basics
+        sku:
+          type: string
+          example: 1234BLK
+        upc:
+          type: string
+          example: '042100005264'
+        image_url:
+          type: string
+          example: https://http.cat/404
+        price:
+          type: number
+          example: 25.99
+          default: 0
+        parent_product_id:
+          type: string
+          example: '1234'
+        recommendation_type:
+          type: string
+          example: contextual
+      example: '[ { "product_id": "1234BLK", "name": "Basics - Black", "brand": "Jungle James Basics", "sku": "1234BLK", "upc": "042100005264", "image_url": "https://http.cat/404", "price": 25.99, "parent_product_id": "1234", "recommendation_type": "contextual" }, { "product_id": "1234BLU", "name": "Basics - Blue", "brand": "Jungle James Basics", "sku": "1234BLU", "upc": "042100005265", "image_url": "https://http.cat/404", "price": 25.99, "parent_product_id": "1234", "recommendation_type": "contextual" } ]'
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

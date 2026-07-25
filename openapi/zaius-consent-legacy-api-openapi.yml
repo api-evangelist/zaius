@@ -1,0 +1,104 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Consent (Legacy) API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Consent (Legacy)
+  description: The legacy Consent API is only available for the United States region. Migrate to the latest Update consent API.
+paths:
+  /lists/subscriptions:
+    servers:
+    - url: https://api.us1.odp.optimizely.com/v3
+      description: United States
+    post:
+      tags:
+      - Consent (Legacy)
+      summary: Consent (Legacy)
+      description: Updates marketing consent information for one or more customers.
+      operationId: consent-legacy
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/LegacyConsentUpdateRequest'
+            examples:
+              Update consent request:
+                description: Updates marketing consent information for multiple customers.
+                value:
+                - email: sample@test.com
+                  opted_in: false
+        required: true
+      responses:
+        '202':
+          description: Consent updated successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+      deprecated: true
+components:
+  schemas:
+    LegacyConsentUpdateRequest:
+      required:
+      - email
+      - opted_in
+      type: object
+      properties:
+        opted_in:
+          type: boolean
+          description: The customer's subscription status.
+          example: true
+          enum:
+          - true
+          - false
+        email:
+          pattern: ^(?=.{1,64}@)[\p{L}0-9_-]+(\.[\p{L}0-9_-]+)*@[^-][\p{L}0-9-]+(\.[\p{L}0-9-]+)*(\.[\p{L}]{2,})$
+          type: string
+          description: The customer's email address.
+          example: 'true'
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

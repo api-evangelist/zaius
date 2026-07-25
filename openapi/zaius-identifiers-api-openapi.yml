@@ -1,0 +1,294 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Identifiers API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Identifiers
+paths:
+  /schema/identifiers:
+    post:
+      tags:
+      - Identifiers
+      summary: Create identifier
+      description: Create an identifier in Optimizely Data Platform (ODP) to use for user resolution.
+      operationId: create-identifier
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Identifier'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                  name: facebook_messenger_id
+                  display_name: Facebook Messenger ID
+                  public_read: false
+                  merge_confidence: high
+                  messaging: true
+        required: true
+      responses:
+        '201':
+          description: Created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierCreated'
+              example:
+                events:
+                - name: event_facebook_messenger_id
+                  display_name: Event Facebook Messenger ID
+                  type: identifier
+                customers:
+                - name: facebook_messenger_id
+                  display_name: Last Seen Facebook Messenger ID
+                  type: identifier
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                title: Bad Request
+                status: 400
+                timestamp: '2018-08-07T13:44:17.659Z'
+                detail:
+                  invalids:
+                  - field: customers.name
+                    reason: already used by another object
+                  - field: customers.display_name
+                    reason: already used by another object
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /identifiers:
+    post:
+      tags:
+      - Identifiers
+      summary: Update identifier metadata
+      description: Update metadata for an identifier.
+      operationId: update-identifier-metadata
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/UpdateIdentifier'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                - identifier_value: test@optimizely.com
+                  identifier_field_name: email
+                  metadata:
+                    mailbox_provider: google
+                    primary_mailbox: true
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdentifierCreated'
+              example: "{\n  \"title\": \"Accepted\",\n  \"status\": 202,\n  \"timestamp\": \"2019-07-30T23:55:00.519Z\"\n}\n"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /identifiers/{field_name}:
+    get:
+      tags:
+      - Identifiers
+      summary: Get identifier metadata
+      description: Retrieve metadata for an identifier in Optimizely Data Platform (ODP).
+      operationId: get-identifier-metadata
+      parameters:
+      - name: field_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The field name for the identifier being requested (for example, email).
+      - name: id
+        in: query
+        schema:
+          type: string
+        description: The identifier value being requested (for example, test@optimizely.com).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IdenfitierMetadata'
+              example:
+                identifier_value: john@example.com
+                identifier_field_name: email
+                zaius_id: abcd
+                metadata:
+                  mailbox_provider: google
+                  primary_mailbox: true
+                metadata_update_ts: 1556582935
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+components:
+  schemas:
+    Error:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+          default: 0
+        timestamp:
+          type: string
+          example: '2018-08-07T13:44:17.659Z'
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: name
+                  reason:
+                    type: string
+                    example: already used by another object
+    Identifier:
+      type: object
+      required:
+      - name
+      - display_name
+      - merge_confidence
+      properties:
+        name:
+          type: string
+          description: 'The field name of the identifier, ending with one of the known suffixes: id, hash, number, token, alias, address, key.'
+        display_name:
+          type: string
+          description: 'The human-readable name, ending with the title case version of the name suffix: ID, Hash, Number, Token, Alias, Address, Key.'
+        public_read:
+          type: boolean
+          description: Enable access with the API public key.
+          default: false
+        merge_confidence:
+          type: string
+          description: The level of confidence (`high` or `low`) that this identifier can be used to merge customer profiles together.
+        messaging:
+          type: boolean
+          description: Whether this identifier can be used to message customers in campaigns.
+    IdentifierCreated:
+      type: object
+      properties:
+        events:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: event_facebook_messenger_id
+              display_name:
+                type: string
+                example: Event Facebook Messenger ID
+              type:
+                type: string
+                example: identifier
+        customers:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: facebook_messenger_id
+              display_name:
+                type: string
+                example: Last Seen Facebook Messenger ID
+              type:
+                type: string
+                example: identifier
+    IdenfitierMetadata:
+      type: object
+      properties:
+        identifier_value:
+          type: string
+          example: john@example.com
+        identifier_field_name:
+          type: string
+          example: email
+        zaius_id:
+          type: string
+          example: abcd
+        metadata:
+          type: object
+          properties:
+            mailbox_provider:
+              type: string
+              example: google
+            primary_mailbox:
+              type: boolean
+              example: true
+              default: true
+        metadata_update_ts:
+          type: integer
+          example: 1556582935
+          default: 0
+    UpdateIdentifier:
+      required:
+      - identifier_value
+      - identifier_field_name
+      type: object
+      properties:
+        identifier_value:
+          type: string
+          description: Any valid identifier of this type (for example, test@optimizely.com).
+        identifier_field_name:
+          type: string
+          description: The field name for the identifier you want to update (for example, email).
+        metadata:
+          type: array
+          items:
+            type: object
+            properties: {}
+            description: Object containing the metadata fields you want to update. The metadata fields must already exist on the identifier field.
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

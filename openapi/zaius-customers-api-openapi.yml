@@ -1,0 +1,180 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Customers API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Customers
+paths:
+  /profiles:
+    get:
+      tags:
+      - Customers
+      summary: Get Customer Information
+      description: Get the attributes and identifiers associated with a customer.
+      operationId: get-customer-information
+      parameters:
+      - name: params
+        in: query
+        description: The name and value for any single identifier. Replace this with any valid identifier (for example, email, vuid, and so on).
+        required: true
+        style: form
+        explode: true
+        schema:
+          type: object
+          additionalProperties:
+            type: string
+        examples:
+          VUID Identifier:
+            description: VUID Identifier
+            value:
+              vuid: '7367361510212356712212576900906231'
+          Email Identifier:
+            description: Email Identifier
+            value:
+              email: customer@email.com
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Profile'
+              example:
+                attributes:
+                  first_name: Johnny
+                  last_name: Test
+                  email: sample@test.com
+                  phone: 555-867-5309
+                  street1: 123 Fake St
+                  street2: Apt 101
+                  city: Boston
+                  state: MA
+                  zip: '02101'
+                  country: USA
+                  timezone: America/New_York
+                  gender: M
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+    post:
+      tags:
+      - Customers
+      summary: Create and update customers
+      description: Update the attributes and identifiers of a customer.
+      operationId: createupdate-customers
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/ProfileUpdateRequest'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                - attributes:
+                    first_name: Johnny
+                    last_name: Test
+                    email: sample@test.com
+                    phone: 555-867-5309
+                    street1: 123 Fake St
+                    street2: Apt 101
+                    city: Boston
+                    state: MA
+                    zip: '02101'
+                    country: USA
+                    timezone: America/New_York
+                    gender: M
+                - attributes:
+                    first_name: Jenny
+                    last_name: Example
+                    email: example@notreal.com
+                    phone: 555-555-5555
+                    street1: 456 Imaginary Ln
+                    city: Leesburg
+                    state: Virginia
+                    zip: '20175'
+                    country: United States
+                    timezone: America/New_York
+                    gender: F
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericUpdateResponse'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+components:
+  schemas:
+    Profile:
+      type: object
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

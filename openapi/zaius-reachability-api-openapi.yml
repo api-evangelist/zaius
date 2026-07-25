@@ -1,0 +1,168 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Reachability API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Reachability
+paths:
+  /reachability:
+    post:
+      tags:
+      - Reachability
+      summary: Update reachability
+      description: Update reachability for a messaging identifier.
+      operationId: update-reachability
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Reachability'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                - identifier_value: email@optimizely.com
+                  identifier_field_name: email
+                  reachable: false
+                  reachable_update_type: hard_bounce
+                - identifier_value: email2@optimizely.com
+                  identifier_field_name: email
+                  reachable: true
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GenericUpdateResponse'
+              example: "{\n  \"title\": \"Accepted\",\n  \"status\": 202,\n  \"timestamp\": \"2019-07-30T23:55:00.519Z\"\n}\n"
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReachabilityError'
+              example: "{\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"timestamp\": \"2019-07-30T23:53:48.615Z\",\n  \"detail\": {\n    \"message\": \"Unable to parse request body.\"\n  }\n}\n"
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /reachability/{identifier_field_name}:
+    get:
+      tags:
+      - Reachability
+      summary: Get reachability
+      description: Retrieve reachability information for a specific identifier.
+      operationId: get-reachability
+      parameters:
+      - name: identifier_field_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the field that this identifiers falls under (for example, email).
+      - name: id
+        in: query
+        required: true
+        schema:
+          type: string
+        description: A valid messaging identifier (for example, an email address).
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Reachability'
+              example:
+                identifier_field_name: email
+                identifier_value: test@optimizely.com
+                reachable_update_type: hard_bounce
+                reachable_update_reason: 5xx from mailbox provider
+                reachable_update_ts: 1572721108
+                reachable: false
+                zaius_id: 3355837520960160000
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+components:
+  schemas:
+    Reachability:
+      required:
+      - identifier_value
+      - identifier_field_name
+      - reachable
+      - reachable_update_type
+      type: object
+      properties:
+        identifier_value:
+          type: string
+          description: A valid messaging identifier, like an email address.
+        identifier_field_name:
+          type: string
+          description: The name of the field that this identifier falls under (for example, email).
+        reachable:
+          type: boolean
+          description: True/false indicator of the reachability status for this identifier value.
+          default: true
+        reachable_update_type:
+          type: string
+          description: 'The type of change to the reachability status. If `reachable` is set to `true`, you must leave this field null. Reason must be one of the following options: `hard_bounce`, `soft_bounce`, `spam_report`, `uninstall`, `invalid_identifier`, `returned_to_sender`, `unknown`, `expired`, `other`.'
+        reachable_update_reason:
+          type: string
+          description: A specific error code or note for the change type.
+        reachable_update_ts:
+          type: string
+          description: The time of the event (defaults to current time).
+        zaius_id:
+          type: integer
+    ReachabilityError:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+          default: 0
+        timestamp:
+          type: string
+          example: '2018-08-07T13:44:17.659Z'
+        detail:
+          type: object
+          properties:
+            message:
+              type: string
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

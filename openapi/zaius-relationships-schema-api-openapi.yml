@@ -1,0 +1,319 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Relationships schema API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Relationships schema
+paths:
+  /schema/objects/{object_name}/relations:
+    post:
+      tags:
+      - Relationships schema
+      summary: Create relationship
+      description: Create a relation between objects in Optimizely Data Platform (ODP).
+      operationId: create-relationship
+      parameters:
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object where you want to create the relationship.
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Relation'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                  name: relation_name
+                  display_name: Relation Display Name
+                  public_read: false
+                  child_object: child_object_name
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+              example:
+                name: my_relation
+                display_name: My Relationship
+                child_object: child
+                join_fields:
+                - parent: child_id
+                  child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                title: Bad Request
+                status: 400
+                timestamp: '2018-08-14T12:23:04.500Z'
+                detail:
+                  invalids:
+                  - field: join_fields[0].parent
+                    reason: does not match child data type
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+    get:
+      tags:
+      - Relationships schema
+      summary: List relations
+      description: List the details of all relationships of a specific object.
+      operationId: list-relations
+      parameters:
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Relation'
+              example:
+              - name: my_relation
+                display_name: My Relationship
+                child_object: child
+                join_fields:
+                - parent: child_id
+                  child: child_id
+              - name: my_relation2
+                display_name: My Relationship 2
+                child_object: child
+                join_fields:
+                - parent: child_id
+                  child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /schema/objects/{object_name}/relations/{relation_name}:
+    get:
+      tags:
+      - Relationships schema
+      summary: Get relation
+      description: List the details of a single relationship of a specific object.
+      operationId: get-relation
+      parameters:
+      - name: relation_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the relationship.
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Relation'
+              example:
+                name: my_relation
+                display_name: My Relationship
+                child_object: target_object_name
+                join_fields:
+                - parent: child_id
+                  child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+                example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+components:
+  schemas:
+    Object:
+      required:
+      - name
+      - display_name
+      - public_read
+      - alias
+      - fields
+      type: object
+      properties:
+        name:
+          type: string
+          description: the plural name of the object (for example, tickets)
+        display_name:
+          type: string
+          description: the human-readable name of the object (for example, Tickets)
+        public_read:
+          type: boolean
+          description: enable access with the API public key
+          default: false
+        alias:
+          type: string
+          description: the singular name of the object (for example, ticket)
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: object_id
+              display_name:
+                type: string
+                example: New Object Identifier
+              type:
+                type: string
+                example: string
+              primary:
+                type: boolean
+                example: true
+                default: true
+          description: an array of fields objects
+        relations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: my_relation
+              display_name:
+                type: string
+                example: My Relationship
+              child_object:
+                type: string
+                example: child
+              join_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    parent:
+                      type: string
+                      example: child_id
+                    child:
+                      type: string
+                      example: child_id
+          description: an array of relations objects
+    Relation:
+      required:
+      - child_object
+      - name
+      - display_name
+      - public_read
+      - fields
+      type: object
+      properties:
+        child_object:
+          type: string
+          example: child
+          description: The name of the child object.
+        name:
+          type: string
+          example: relation_name
+          description: The name of the relationship (for example, ticket).
+        display_name:
+          type: string
+          example: Relation Display Name
+          description: The human-readable name of the field (for example, Ticket).
+        public_read:
+          type: string
+          example: false
+          default: false
+          description: Enable access with the API public key.
+        join_fields:
+          type: array
+          items:
+            required:
+            - parent
+            type: object
+            properties:
+              parent:
+                type: string
+                example: id
+                description: The name of the object that links to the child object (for example, id).
+              child:
+                type: string
+                example: child_id
+                description: The name of the child object that links to this object (for example, ticket_id).
+    Error:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+          default: 0
+        timestamp:
+          type: string
+          example: '2018-08-07T13:44:17.659Z'
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: name
+                  reason:
+                    type: string
+                    example: already used by another object
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

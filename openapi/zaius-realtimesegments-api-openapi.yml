@@ -1,0 +1,619 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance RealtimeSegments API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: RealtimeSegments
+paths:
+  /segments:
+    get:
+      summary: List segments
+      description: Lists all the real-time segments for an account.
+      operationId: RealtimeSegments_ListSegments
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ListSegmentsResponse'
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+  /segments/{segment_id}:
+    get:
+      summary: Get segment
+      description: 'Returns the schema of a requested segment. Note: this does not return the list of members in the segment.'
+      operationId: RealtimeSegments_GetSegment
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/GetSegmentResponse'
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+    delete:
+      summary: Delete segment
+      description: 'Removes the requested segment. Note: this does not delete the members of the segment.'
+      operationId: RealtimeSegments_UninstallSegment
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UninstallSegmentResponse'
+        '404':
+          description: Not Found.
+          content:
+            application/json:
+              schema: {}
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+    post:
+      summary: Create segment
+      description: Create a new segment.
+      operationId: RealtimeSegments_CreateSegment
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallSegmentResponse'
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallSegmentResponse'
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema: {}
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/RealtimeSegments_CreateSegmentBody'
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+    put:
+      summary: Update segment
+      description: Modify the parameters of an existing segment.
+      operationId: RealtimeSegments_InstallSegment
+      responses:
+        '200':
+          description: A successful response.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallSegmentResponse'
+        '201':
+          description: Created.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/InstallSegmentResponse'
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema: {}
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/RealtimeSegments_CreateSegmentBody'
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+  /segments/{segment_id}:validate:
+    post:
+      summary: Validate segment
+      description: Validate segment definition.
+      operationId: RealtimeSegments_ValidateSegment
+      responses:
+        '200':
+          description: Valid segment definition.
+          content:
+            application/json:
+              schema:
+                properties: {}
+        '400':
+          description: Bad Request.
+          content:
+            application/json:
+              schema: {}
+      parameters:
+      - name: segment_id
+        in: path
+        required: true
+        schema:
+          type: string
+      requestBody:
+        $ref: '#/components/requestBodies/RealtimeSegments_CreateSegmentBody'
+      tags:
+      - RealtimeSegments
+      security:
+      - ApiKeyAuth: []
+components:
+  schemas:
+    Continuation:
+      type: object
+      properties:
+        combination:
+          $ref: '#/components/schemas/Continuation.Combination'
+        event_filter:
+          $ref: '#/components/schemas/Expression'
+        sequence_condition:
+          $ref: '#/components/schemas/SequenceCondition'
+        timeout_source:
+          $ref: '#/components/schemas/Expression'
+    NoneOfString:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    InstallSegmentResponse:
+      type: object
+      example:
+        revision: 1
+      properties:
+        revision:
+          type: integer
+          format: int32
+    Collection:
+      type: object
+      properties:
+        key:
+          type: string
+        source:
+          $ref: '#/components/schemas/Key'
+        narrowed_sub_paths:
+          type: array
+          items:
+            type: string
+          description: Optional, a subset of the tracked data's sub-paths for narrowing the output.
+        unique:
+          type: boolean
+          description: Only output unique rows.
+    BooleanLiteral:
+      type: object
+      properties:
+        value:
+          type: boolean
+      description: Evaluates to boolean.
+    Sequence:
+      type: object
+      properties:
+        entry_event_filter:
+          $ref: '#/components/schemas/Expression'
+        unique_key_sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expression'
+          description: Optional, each must evaluate to a primitive.
+        tracked_data:
+          type: array
+          items:
+            $ref: '#/components/schemas/TrackedData'
+          description: Optional.
+        max_age_seconds:
+          type: integer
+          format: int32
+          description: Must be between 1 and 2419200 (ie, 28 days).
+        goal:
+          $ref: '#/components/schemas/Continuation'
+        disqualifier:
+          $ref: '#/components/schemas/Continuation'
+    LikeAnyOfString:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    SequenceCondition:
+      type: object
+      properties:
+        sequence:
+          $ref: '#/components/schemas/Sequence'
+        min_count:
+          type: integer
+          format: int32
+          description: Optional, but at least one of min_count or max_count should be specified.
+        max_count:
+          type: integer
+          format: int32
+          description: Optional, cannot be less than min_count.
+    ShiftTime:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+        amount:
+          $ref: '#/components/schemas/Expression'
+        unit:
+          $ref: '#/components/schemas/TimeUnit'
+        timezone:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to number (epoch seconds).
+    GetSegmentResponse:
+      type: object
+      properties:
+        revision:
+          type: integer
+          format: int32
+          example: 1
+        description:
+          type: string
+          example: Customer has email
+        metadata:
+          type: object
+          example:
+            display_name: Customer Has Email
+          additionalProperties:
+            type: string
+        definition:
+          $ref: '#/components/schemas/SegmentDefinition'
+    TrueOrMissing:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to boolean.
+    ListSegmentsResponse:
+      type: object
+      properties:
+        segment_ids:
+          type: array
+          items:
+            type: string
+    Expression:
+      type: object
+      properties:
+        combination:
+          $ref: '#/components/schemas/Expression.Combination'
+        comparison:
+          $ref: '#/components/schemas/Comparison'
+        path_reference:
+          $ref: '#/components/schemas/PathReference'
+        string_literal:
+          $ref: '#/components/schemas/StringLiteral'
+        number_literal:
+          $ref: '#/components/schemas/NumberLiteral'
+        boolean_literal:
+          $ref: '#/components/schemas/BooleanLiteral'
+        is_missing:
+          $ref: '#/components/schemas/IsMissing'
+        is_not_missing:
+          $ref: '#/components/schemas/IsNotMissing'
+        false_or_missing:
+          $ref: '#/components/schemas/FalseOrMissing'
+        true_or_missing:
+          $ref: '#/components/schemas/TrueOrMissing'
+        coalesce:
+          $ref: '#/components/schemas/Coalesce'
+        truncate_time:
+          $ref: '#/components/schemas/TruncateTime'
+        shift_time:
+          $ref: '#/components/schemas/ShiftTime'
+        any_of_string:
+          $ref: '#/components/schemas/AnyOfString'
+        any_of_number:
+          $ref: '#/components/schemas/AnyOfNumber'
+        none_of_string:
+          $ref: '#/components/schemas/NoneOfString'
+        none_of_number:
+          $ref: '#/components/schemas/NoneOfNumber'
+        like_any_of_string:
+          $ref: '#/components/schemas/LikeAnyOfString'
+        like_none_of_string:
+          $ref: '#/components/schemas/LikeNoneOfString'
+        is_list_member:
+          $ref: '#/components/schemas/IsListMember'
+        is_not_list_member:
+          $ref: '#/components/schemas/IsNotListMember'
+    Coalesce:
+      type: object
+      properties:
+        sources:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expression'
+          description: Must all evaluate to same type.
+      description: Evaluates to type of source.
+    Comparison:
+      type: object
+      properties:
+        lhs:
+          $ref: '#/components/schemas/Expression'
+        comparator:
+          $ref: '#/components/schemas/Comparator'
+        rhs:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to boolean.
+    TimeUnit:
+      type: string
+      enum:
+      - TIME_UNIT_NOT_SET
+      - SECOND
+      - MINUTE
+      - HOUR
+      - DAY
+      default: TIME_UNIT_NOT_SET
+    AnyOfString:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    Condition.Combination:
+      type: object
+      properties:
+        conjunction:
+          $ref: '#/components/schemas/Conjunction'
+        conditions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Condition'
+    IsNotListMember:
+      type: object
+      properties:
+        list:
+          type: string
+      description: Evaluates to boolean.
+    AnyOfNumber:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    SegmentDefinition:
+      type: object
+      example:
+        root_condition:
+          customer_condition:
+            customer_filter:
+              is_not_missing:
+                source:
+                  path_reference:
+                    value: customer.email
+      properties:
+        root_condition:
+          $ref: '#/components/schemas/Condition'
+        collections:
+          type: array
+          items:
+            $ref: '#/components/schemas/Collection'
+    Continuation.Combination:
+      type: object
+      properties:
+        conjunction:
+          $ref: '#/components/schemas/Conjunction'
+        continuations:
+          type: array
+          items:
+            $ref: '#/components/schemas/Continuation'
+          description: Cannot be empty.
+    Condition:
+      type: object
+      properties:
+        combination:
+          $ref: '#/components/schemas/Condition.Combination'
+        customer_condition:
+          $ref: '#/components/schemas/CustomerCondition'
+        sequence_condition:
+          $ref: '#/components/schemas/SequenceCondition'
+    TrackedData:
+      type: object
+      properties:
+        key:
+          $ref: '#/components/schemas/Key'
+        source_path:
+          type: string
+          description: 'Path to a source object, eg: event.product or event.product.parent_product.'
+        field_sub_paths:
+          type: array
+          items:
+            type: string
+          description: 'Within the source, set of field sub-paths, eg: (product_id, category.name_0).'
+    IsListMember:
+      type: object
+      properties:
+        list:
+          type: string
+      description: Evaluates to boolean.
+    StringLiteral:
+      type: object
+      properties:
+        value:
+          type: string
+      description: Evaluates to string.
+    Key:
+      type: object
+      properties:
+        key:
+          type: string
+      description: Must be unique within a SegmentDefinition.
+    Comparator:
+      type: string
+      enum:
+      - COMPARATOR_NOT_SET
+      - EQUAL
+      - NOT_EQUAL
+      - LESS_THAN
+      - LESS_THAN_OR_EQUAL
+      - GREATER_THAN
+      - GREATER_THAN_OR_EQUAL
+      - LIKE
+      - NOT_LIKE
+      default: COMPARATOR_NOT_SET
+    PathReference:
+      type: object
+      properties:
+        value:
+          type: string
+      description: Evaluates to type of referenced field.
+    IsNotMissing:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to boolean.
+    CustomerCondition:
+      type: object
+      properties:
+        customer_filter:
+          $ref: '#/components/schemas/Expression'
+    Expression.Combination:
+      type: object
+      properties:
+        conjunction:
+          $ref: '#/components/schemas/Conjunction'
+        expressions:
+          type: array
+          items:
+            $ref: '#/components/schemas/Expression'
+          description: Cannot be empty; all must evaluate to boolean.
+      description: Evaluates to boolean.
+    FalseOrMissing:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to boolean.
+    NoneOfNumber:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    IsMissing:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to boolean.
+    NumberLiteral:
+      type: object
+      properties:
+        value:
+          type: string
+      description: Evaluates to number.
+    LikeNoneOfString:
+      type: object
+      properties:
+        needle:
+          $ref: '#/components/schemas/Expression'
+        haystack:
+          type: array
+          items:
+            type: string
+      description: Evaluates to boolean.
+    TruncateTime:
+      type: object
+      properties:
+        source:
+          $ref: '#/components/schemas/Expression'
+        unit:
+          $ref: '#/components/schemas/TimeUnit'
+        timezone:
+          $ref: '#/components/schemas/Expression'
+      description: Evaluates to number (epoch seconds).
+    Conjunction:
+      type: string
+      enum:
+      - CONJUNCTION_NOT_SET
+      - AND
+      - OR
+      default: CONJUNCTION_NOT_SET
+    UninstallSegmentResponse:
+      type: object
+  requestBodies:
+    RealtimeSegments_CreateSegmentBody:
+      content:
+        application/json:
+          schema:
+            type: object
+            properties:
+              description:
+                type: string
+                example: Customer has email
+              metadata:
+                type: object
+                example:
+                  display_name: Customer Has Email
+                additionalProperties:
+                  type: string
+              definition:
+                $ref: '#/components/schemas/SegmentDefinition'
+      required: true
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

@@ -1,0 +1,336 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Compliance
+paths:
+  /compliance/gdpr/delete:
+    post:
+      tags:
+      - Compliance
+      summary: GDPR delete request
+      description: Send a GDPR compliance delete request for a customer.
+      operationId: gdpr-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdentifierRequestObject'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/ccpa/delete:
+    post:
+      tags:
+      - Compliance
+      summary: CCPA delete request
+      description: Send a CCPA compliance delete request for a customer.
+      operationId: ccpa-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdentifierRequestObject'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/ccpa/optout:
+    post:
+      tags:
+      - Compliance
+      summary: CCPA opt-out request
+      description: Send a CCPA compliance opt-out request for a customer.
+      operationId: ccpa-optout
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdentifierRequestObject'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/lgpd/delete:
+    post:
+      tags:
+      - Compliance
+      summary: LGPD delete request
+      description: Send an LGPD compliance delete request for a customer.
+      operationId: lgpd-delete
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                $ref: '#/components/schemas/IdentifierRequestObject'
+        required: true
+      responses:
+        '202':
+          description: Accepted
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ComplianceResponseBody'
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/gdpr/status/{requestId}:
+    get:
+      tags:
+      - Compliance
+      summary: GDPR request status
+      description: Get the status of a previous GDPR compliance delete request (by request ID).
+      operationId: gdpr-status
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                enum:
+                - IN_PROGRESS
+                - COMPLETED
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/ccpa/status/{requestId}:
+    get:
+      tags:
+      - Compliance
+      summary: CCPA request status
+      description: Get the status of a previous CCPA compliance delete or opt-out request (by request ID).
+      operationId: ccpa-status
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                enum:
+                - IN_PROGRESS
+                - COMPLETED
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+  /compliance/lgpd/status/{requestId}:
+    get:
+      tags:
+      - Compliance
+      summary: LGPD request status
+      description: Get the status of a previous LGPD compliance delete request (by request ID).
+      operationId: lgpd-status
+      parameters:
+      - name: requestId
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: string
+                enum:
+                - IN_PROGRESS
+                - COMPLETED
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Bad Request","status":400,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"invalids":[{"field":"delimiter","reason":"Unrecognized delimiter, valid options are comma, tab or pipe"}]}}'
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              schema:
+                example: '{  "message": "Forbidden"}'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
+components:
+  schemas:
+    IdentifierRequestObject:
+      required:
+      - identifier_field_name
+      - identifier_value
+      - requester
+      type: object
+      properties:
+        requester:
+          type: string
+          description: The email address of the requester for audit purposes.
+          example: brand@example.com
+        identifier_value:
+          type: string
+          description: The value of the identifier to delete or opt out.
+          example: johndoe@example.com
+        identifier_field_name:
+          type: string
+          description: The type of identifier that you are deleting or opting out.
+          example: email
+    ComplianceResponseBody:
+      type: object
+      properties:
+        request_ids:
+          type: array
+          items:
+            type: string
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true

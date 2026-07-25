@@ -1,0 +1,326 @@
+openapi: 3.0.1
+info:
+  title: Advanced Compliance Object schema API
+  description: Advanced
+  version: v3
+servers:
+- url: https://api.us1.odp.optimizely.com/v3
+  description: United States
+- url: https://api.eu1.odp.optimizely.com/v3
+  description: Europe
+- url: https://api.au1.odp.optimizely.com/v3
+  description: Asia-Pacific
+security:
+- x-api-key: []
+tags:
+- name: Object schema
+paths:
+  /schema/objects:
+    post:
+      tags:
+      - Object schema
+      summary: Create object
+      description: Create a new Object within Optimizely Data Platform (ODP), define its fields and how it relates to other objects.
+      operationId: create-object
+      requestBody:
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Object'
+            examples:
+              Example Payload:
+                description: Example Payload
+                value:
+                  name: objects
+                  display_name: Object
+                  public_read: false
+                  alias: object
+                  fields:
+                  - name: object_id
+                    display_name: New Object Identifier
+                    public_read: false
+                    type: string
+                    primary: true
+                  - name: another_field
+                    display_name: Another Fields
+                    type: string
+                  - name: child_id
+                    display_name: Child Identifier
+                    type: number
+                  relations:
+                  - name: my_relation
+                    display_name: My Relationship
+                    public_read: false
+                    child_object: child
+                    join_fields:
+                    - parent: child_id
+                      child: child_id
+        required: true
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+              example:
+                name: objects
+                display_name: Object
+                alias: object
+                fields:
+                - name: object_id
+                  display_name: New Object Identifier
+                  type: string
+                  primary: true
+                - name: another_field
+                  display_name: Another Fields
+                  type: string
+                - name: child_id
+                  display_name: Child Identifier
+                  type: number
+                relations:
+                - name: my_relation
+                  display_name: My Relationship
+                  child_object: child
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+              example:
+                title: Bad Request
+                status: 400
+                timestamp: '2018-08-07T13:44:17.659Z'
+                detail:
+                  invalids:
+                  - field: name
+                    reason: already used by another object
+                  - field: alias
+                    reason: already used by another object
+                  - field: display_name
+                    reason: already used by another object
+                  - field: fields
+                    reason: at least one primary key field required
+                  - field: relations[0].child_object
+                    reason: does not exist
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+    get:
+      tags:
+      - Object schema
+      summary: List objects
+      description: List the details of all objects within an Optimizely Data Platform (ODP) account.
+      operationId: list-objects
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Object'
+              example:
+              - name: tickets
+                display_name: Tickets
+                alias: ticket
+                fields:
+                - name: field_name
+                  type: number
+                  display_name: Display Name
+                  primary: true
+                relations:
+                - name: my_relation
+                  display_name: My Relationship
+                  child_object: target_object_name
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+              - name: concerts
+                display_name: Concerts
+                alias: concert
+                fields:
+                - name: field_name
+                  type: number
+                  display_name: Display Name
+                  primary: true
+                relations:
+                - name: my_relation
+                  display_name: My Relationship
+                  child_object: target_object_name
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+  /schema/objects/{object_name}:
+    get:
+      tags:
+      - Object schema
+      summary: Get object
+      description: List the details of a specific object in an Optimizely Data Platform (ODP) account.
+      operationId: get-object
+      parameters:
+      - name: object_name
+        in: path
+        required: true
+        schema:
+          type: string
+        description: The name of the object.
+        example: myobject
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Object'
+              example:
+                name: tickets
+                display_name: Tickets
+                alias: ticket
+                fields:
+                - name: field_name
+                  type: number
+                  display_name: Display Name
+                  primary: true
+                relations:
+                - name: my_relation
+                  display_name: My Relationship
+                  child_object: target_object_name
+                  join_fields:
+                  - parent: child_id
+                    child: child_id
+        '400':
+          description: Bad Request
+          content:
+            application/json:
+              schema:
+                type: object
+              example: {}
+        '403':
+          description: Forbidden
+          content:
+            application/json:
+              example: '{"message": "Forbidden"}'
+components:
+  schemas:
+    Object:
+      required:
+      - name
+      - display_name
+      - public_read
+      - alias
+      - fields
+      type: object
+      properties:
+        name:
+          type: string
+          description: the plural name of the object (for example, tickets)
+        display_name:
+          type: string
+          description: the human-readable name of the object (for example, Tickets)
+        public_read:
+          type: boolean
+          description: enable access with the API public key
+          default: false
+        alias:
+          type: string
+          description: the singular name of the object (for example, ticket)
+        fields:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: object_id
+              display_name:
+                type: string
+                example: New Object Identifier
+              type:
+                type: string
+                example: string
+              primary:
+                type: boolean
+                example: true
+                default: true
+          description: an array of fields objects
+        relations:
+          type: array
+          items:
+            type: object
+            properties:
+              name:
+                type: string
+                example: my_relation
+              display_name:
+                type: string
+                example: My Relationship
+              child_object:
+                type: string
+                example: child
+              join_fields:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    parent:
+                      type: string
+                      example: child_id
+                    child:
+                      type: string
+                      example: child_id
+          description: an array of relations objects
+    Error:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+          default: 0
+        timestamp:
+          type: string
+          example: '2018-08-07T13:44:17.659Z'
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: name
+                  reason:
+                    type: string
+                    example: already used by another object
+  securitySchemes:
+    x-api-key:
+      type: apiKey
+      name: x-api-key
+      in: header
+x-readme:
+  explorer-enabled: true
+  proxy-enabled: true
