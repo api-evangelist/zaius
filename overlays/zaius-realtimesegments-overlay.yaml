@@ -1,0 +1,12 @@
+overlay: 1.0.0
+info:
+  title: API Evangelist enhancements for Zaius ODP RealtimeSegments
+  version: 1.0.0
+extends: openapi/zaius-realtimesegments-openapi.json
+actions:
+  - target: $.info
+    update:
+      x-apievangelist-provider: zaius
+      x-apievangelist-product: optimizely-data-platform
+      x-apievangelist-auth: x-api-key
+      x-apievangelist-regions: [us1, eu1, au1]

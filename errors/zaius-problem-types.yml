@@ -1,0 +1,43 @@
+generated: '2026-07-21'
+method: derived
+source: derived from OpenAPI 4xx/5xx responses across openapi/*.json
+format: plain
+note: ODP REST APIs return standard HTTP status codes with a JSON body; responses are not RFC 9457 problem+json.
+problems:
+  - status: 400
+    title: "Bad Request \u2014 malformed request or invalid parameters"
+    remediation: "Check the request body and query parameters against the endpoint schema."
+    operation_count: 37
+    example_operations:
+      - openapi/zaius-advanced-openapi.json#ccpa-delete
+      - openapi/zaius-advanced-openapi.json#ccpa-optout
+      - openapi/zaius-advanced-openapi.json#ccpa-status
+      - openapi/zaius-advanced-openapi.json#create-field
+      - openapi/zaius-advanced-openapi.json#create-identifier
+  - status: 403
+    title: "Forbidden \u2014 missing or invalid x-api-key, or key lacks access to this API"
+    remediation: "Verify the x-api-key header uses a valid public or private key with access to this API."
+    operation_count: 39
+    example_operations:
+      - openapi/zaius-advanced-openapi.json#ccpa-delete
+      - openapi/zaius-advanced-openapi.json#ccpa-optout
+      - openapi/zaius-advanced-openapi.json#ccpa-status
+      - openapi/zaius-advanced-openapi.json#create-field
+      - openapi/zaius-advanced-openapi.json#create-identifier
+  - status: 404
+    title: "Not Found \u2014 the referenced resource or identifier does not exist"
+    remediation: "Confirm the object name, field, segment id, or identifier exists in your ODP account."
+    operation_count: 24
+    example_operations:
+      - openapi/zaius-advanced-openapi.json#ccpa-delete
+      - openapi/zaius-advanced-openapi.json#ccpa-optout
+      - openapi/zaius-advanced-openapi.json#ccpa-status
+      - openapi/zaius-advanced-openapi.json#gdpr-delete
+      - openapi/zaius-advanced-openapi.json#gdpr-status
+  - status: 422
+    title: "Unprocessable Entity \u2014 request understood but failed validation"
+    remediation: "Correct the field values that failed validation and retry."
+    operation_count: 2
+    example_operations:
+      - openapi/zaius-exports-openapi.json#export
+      - openapi/zaius-exports-openapi.json#export_1

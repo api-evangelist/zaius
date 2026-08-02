@@ -1,8 +1,28 @@
 aid: zaius
 name: Zaius
-description: Zaius is a company surfaced as a portfolio company of insight-partners and added to the API
-  Evangelist network as a stub for enrichment. This profile is a lead awaiting the enrichment pipeline.
+description: >-
+  Zaius is the B2C marketing customer data platform (CDP) that Optimizely acquired in 2021 and now
+  operates as the Optimizely Data Platform (ODP). It unifies customer, event, order, product, and
+  custom data into a single behavioral profile, powers real-time audience segmentation, and drives
+  personalization and orchestrated cross-channel campaigns. ODP exposes a versioned (v3) REST API
+  surface across regional hosts (US/EU/AU) for events, customers, orders, products, objects, lists,
+  consent, exports, schema management, recommendations, and real-time segments, plus a GraphQL query
+  API and Web / React Native / Node SDKs. Authentication is via public (Tracker ID) and private
+  x-api-key keys. Originally a portfolio company of Insight Partners.
 url: https://raw.githubusercontent.com/api-evangelist/zaius/refs/heads/main/apis.yml
+accessModel:
+  pricing: unknown
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Self-serve signup
+  confidence: medium
+  source:
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://www.optimizely.com/products/data-platform
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -11,15 +31,263 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-17'
+modified: '2026-07-21'
 tags:
 - Company
-apis: []
+- Customer Data Platform
+- CDP
+- Marketing
+- Personalization
+- Segmentation
+- Ecommerce
+- Customer Data
+- Real-Time Audiences
+- Events
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
 - FN: APIs.json
   email: info@apis.io
+apis:
+- aid: zaius:zaius-compliance-api
+  name: Zaius Compliance API
+  description: The Compliance API from Zaius — 7 operation(s) for compliance.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Compliance
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-compliance-api-openapi.yml
+- aid: zaius:zaius-consent-api
+  name: Zaius Consent API
+  description: The Consent API from Zaius — 2 operation(s) for consent.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Consent
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-consent-api-openapi.yml
+- aid: zaius:zaius-consent-legacy-api
+  name: Zaius Consent (Legacy) API
+  description: >-
+    The legacy Consent API is only available for the United States region. Migrate to the latest Update
+    consent API.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Consent (Legacy)
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-consent-legacy-api-openapi.yml
+- aid: zaius:zaius-customers-api
+  name: Zaius Customers API
+  description: The Customers API from Zaius — 1 operation(s) for customers.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Customers
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-customers-api-openapi.yml
+- aid: zaius:zaius-events-api
+  name: Zaius Events API
+  description: The Events API from Zaius — 1 operation(s) for events.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Events
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-events-api-openapi.yml
+- aid: zaius:zaius-exports-api
+  name: Zaius Exports API
+  description: The Exports API from Zaius — 4 operation(s) for exports.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Exports
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-exports-api-openapi.yml
+- aid: zaius:zaius-fields-schema-api
+  name: Zaius Fields schema API
+  description: The Fields schema API from Zaius — 2 operation(s) for fields schema.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Fields schema
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-fields-schema-api-openapi.yml
+- aid: zaius:zaius-identifiers-api
+  name: Zaius Identifiers API
+  description: The Identifiers API from Zaius — 3 operation(s) for identifiers.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Identifiers
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-identifiers-api-openapi.yml
+- aid: zaius:zaius-lists-api
+  name: Zaius Lists API
+  description: The Lists API from Zaius — 2 operation(s) for lists.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Lists
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-lists-api-openapi.yml
+- aid: zaius:zaius-object-schema-api
+  name: Zaius Object schema API
+  description: The Object schema API from Zaius — 2 operation(s) for object schema.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Object schema
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-object-schema-api-openapi.yml
+- aid: zaius:zaius-objects-api
+  name: Zaius Objects API
+  description: The Objects API from Zaius — 1 operation(s) for objects.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Objects
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-objects-api-openapi.yml
+- aid: zaius:zaius-orders-api
+  name: Zaius Orders API
+  description: The Orders API from Zaius — 1 operation(s) for orders.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Orders
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-orders-api-openapi.yml
+- aid: zaius:zaius-products-api
+  name: Zaius Products API
+  description: The Products API from Zaius — 1 operation(s) for products.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-products-api-openapi.yml
+- aid: zaius:zaius-reachability-api
+  name: Zaius Reachability API
+  description: The Reachability API from Zaius — 2 operation(s) for reachability.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Reachability
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-reachability-api-openapi.yml
+- aid: zaius:zaius-realtimesegments-api
+  name: Zaius RealtimeSegments API
+  description: The RealtimeSegments API from Zaius — 3 operation(s) for realtimesegments.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - RealtimeSegments
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-realtimesegments-api-openapi.yml
+- aid: zaius:zaius-recommendations-api
+  name: Zaius Recommendations API
+  description: The Recommendations API from Zaius — 1 operation(s) for recommendations.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Recommendations
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-recommendations-api-openapi.yml
+- aid: zaius:zaius-relationships-schema-api
+  name: Zaius Relationships schema API
+  description: The Relationships schema API from Zaius — 2 operation(s) for relationships schema.
+  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+  baseURL: https://api.us1.odp.optimizely.com/v3
+  tags:
+  - Relationships schema
+  properties:
+  - type: OpenAPI
+    url: openapi/zaius-relationships-schema-api-openapi.yml
 common:
 - type: Website
-  url: https://www.zaius.com/
+  url: https://www.optimizely.com/products/data-platform
+- type: DeveloperPortal
+  url: https://docs.developers.optimizely.com/optimizely-data-platform/docs/welcome
+- type: Documentation
+  url: https://docs.developers.optimizely.com/optimizely-data-platform/docs/welcome
+- type: APIReference
+  url: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+- type: GettingStarted
+  url: https://docs.developers.optimizely.com/optimizely-data-platform/docs/welcome
+- type: Support
+  url: https://support.optimizely.com/hc/en-us/categories/25425312908301-Data-Platform
+- type: Blog
+  url: https://www.optimizely.com/insights/blog/
+- type: GitHubOrganization
+  url: https://github.com/ZaiusInc
+- type: Pricing
+  url: https://www.optimizely.com/pricing/
+- type: SignUp
+  url: https://app.optimizely.com/
+- type: TermsOfService
+  url: https://www.optimizely.com/terms/
+- type: PrivacyPolicy
+  url: https://www.optimizely.com/privacy-policy/
+- type: StatusPage
+  url: https://status.optimizely.com/
+- type: ChangeLog
+  url: https://support.optimizely.com/hc/en-us/articles/23168838218253-2026-Optimizely-Data-Platform-release-notes
+- type: LLMsTxt
+  url: llms/zaius-llms.txt
+- type: Packages
+  url: packages/zaius-packages.yml
+- type: SDKs
+  url: packages/zaius-packages.yml
+- type: Authentication
+  url: authentication/zaius-authentication.yml
+- type: Conventions
+  url: conventions/zaius-conventions.yml
+- type: Lifecycle
+  url: lifecycle/zaius-lifecycle.yml
+- type: Deprecation
+  url: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+- type: ErrorCatalog
+  url: errors/zaius-problem-types.yml
+- type: DataModel
+  url: data-model/zaius-data-model.yml
+- type: Conformance
+  url: conformance/zaius-conformance.yml
+- type: Compliance
+  url: https://www.optimizely.com/trust-center/compliance
+- type: MCPServer
+  url: mcp/zaius-mcp.yml
+- type: AgentSkill
+  url: skills/_index.yml
+- type: TrustCenter
+  url: security/zaius-trust-center.yml
+- type: VulnerabilityDisclosure
+  url: security/zaius-vulnerability-disclosure.yml
+- type: Security
+  url: https://www.optimizely.com/trust-center/security
+- type: DomainSecurity
+  url: security/zaius-domain-security.yml
+- type: Overlay
+  url: overlays/zaius-events-overlay.yaml
+x-enrichment:
+  date: '2026-07-21'
+  status: enriched
+  artifacts_added: 37
+  pass: local-v1

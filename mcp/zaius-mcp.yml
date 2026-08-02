@@ -1,0 +1,143 @@
+generated: '2026-07-21'
+method: derived
+status: candidate
+note: No official ODP-specific hosted MCP server found (Optimizely ships an Experimentation MCP for a different product; ODP exposes a Real-Time Audience agent in the Opal directory, not a public MCP endpoint). Tools below are candidates derived one-per-operation from the ODP OpenAPI.
+server:
+  name: zaius-odp
+  transport: http
+tools:
+  - name: gdpr-delete
+    description: "GDPR delete request"
+    source_operation: openapi/zaius-advanced-openapi.json#gdpr-delete
+  - name: ccpa-delete
+    description: "CCPA delete request"
+    source_operation: openapi/zaius-advanced-openapi.json#ccpa-delete
+  - name: ccpa-optout
+    description: "CCPA opt-out request"
+    source_operation: openapi/zaius-advanced-openapi.json#ccpa-optout
+  - name: lgpd-delete
+    description: "LGPD delete request"
+    source_operation: openapi/zaius-advanced-openapi.json#lgpd-delete
+  - name: gdpr-status
+    description: "GDPR request status"
+    source_operation: openapi/zaius-advanced-openapi.json#gdpr-status
+  - name: ccpa-status
+    description: "CCPA request status"
+    source_operation: openapi/zaius-advanced-openapi.json#ccpa-status
+  - name: lgpd-status
+    description: "LGPD request status"
+    source_operation: openapi/zaius-advanced-openapi.json#lgpd-status
+  - name: create-object
+    description: "Create object"
+    source_operation: openapi/zaius-advanced-openapi.json#create-object
+  - name: list-objects
+    description: "List objects"
+    source_operation: openapi/zaius-advanced-openapi.json#list-objects
+  - name: get-object
+    description: "Get object"
+    source_operation: openapi/zaius-advanced-openapi.json#get-object
+  - name: create-field
+    description: "Create field"
+    source_operation: openapi/zaius-advanced-openapi.json#create-field
+  - name: list-fields
+    description: "List fields"
+    source_operation: openapi/zaius-advanced-openapi.json#list-fields
+  - name: get-field
+    description: "Get field"
+    source_operation: openapi/zaius-advanced-openapi.json#get-field
+  - name: create-relationship
+    description: "Create relationship"
+    source_operation: openapi/zaius-advanced-openapi.json#create-relationship
+  - name: list-relations
+    description: "List relations"
+    source_operation: openapi/zaius-advanced-openapi.json#list-relations
+  - name: get-relation
+    description: "Get relation"
+    source_operation: openapi/zaius-advanced-openapi.json#get-relation
+  - name: update-reachability
+    description: "Update reachability"
+    source_operation: openapi/zaius-advanced-openapi.json#update-reachability
+  - name: get-reachability
+    description: "Get reachability"
+    source_operation: openapi/zaius-advanced-openapi.json#get-reachability
+  - name: create-identifier
+    description: "Create identifier"
+    source_operation: openapi/zaius-advanced-openapi.json#create-identifier
+  - name: update-identifier-metadata
+    description: "Update identifier metadata"
+    source_operation: openapi/zaius-advanced-openapi.json#update-identifier-metadata
+  - name: get-identifier-metadata
+    description: "Get identifier metadata"
+    source_operation: openapi/zaius-advanced-openapi.json#get-identifier-metadata
+  - name: consent-legacy
+    description: "Consent (Legacy)"
+    source_operation: openapi/zaius-consent-openapi.json#consent-legacy
+  - name: update-consent
+    description: "Update consent"
+    source_operation: openapi/zaius-consent-openapi.json#update-consent
+  - name: get-consent
+    description: "Get consent"
+    source_operation: openapi/zaius-consent-openapi.json#get-consent
+  - name: get-customer-information
+    description: "Get Customer Information"
+    source_operation: openapi/zaius-customers-openapi.json#get-customer-information
+  - name: createupdate-customers
+    description: "Create and update customers"
+    source_operation: openapi/zaius-customers-openapi.json#createupdate-customers
+  - name: upload-events
+    description: "Upload events"
+    source_operation: openapi/zaius-events-openapi.json#upload-events
+  - name: export
+    description: "Start Data Export Job"
+    source_operation: openapi/zaius-exports-openapi.json#export
+  - name: export_1
+    description: "Start Segment Members Export Job"
+    source_operation: openapi/zaius-exports-openapi.json#export_1
+  - name: getExportJobStatus
+    description: "Get Data Export Job Status"
+    source_operation: openapi/zaius-exports-openapi.json#getExportJobStatus
+  - name: getSegmentExportJobStatus
+    description: "Get Segment Export Job Status"
+    source_operation: openapi/zaius-exports-openapi.json#getSegmentExportJobStatus
+  - name: get-subscription-status
+    description: "Get Subscription Status"
+    source_operation: openapi/zaius-lists-openapi.json#get-subscription-status
+  - name: subscribeunsubscribe
+    description: "Subscribe/Unsubscribe"
+    source_operation: openapi/zaius-lists-openapi.json#subscribeunsubscribe
+  - name: get-lists
+    description: "Get Lists"
+    source_operation: openapi/zaius-lists-openapi.json#get-lists
+  - name: create-list
+    description: "Create List"
+    source_operation: openapi/zaius-lists-openapi.json#create-list
+  - name: update-object
+    description: "Update Object"
+    source_operation: openapi/zaius-objects-openapi.json#update-object
+  - name: order-returnrefund
+    description: "Order Purchase/Return/Refund/Cancellation"
+    source_operation: openapi/zaius-orders-openapi.json#order-returnrefund
+  - name: update-products
+    description: "Update Products"
+    source_operation: openapi/zaius-products-openapi.json#update-products
+  - name: RealtimeSegments_ListSegments
+    description: "List segments"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_ListSegments
+  - name: RealtimeSegments_GetSegment
+    description: "Get segment"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_GetSegment
+  - name: RealtimeSegments_UninstallSegment
+    description: "Delete segment"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_UninstallSegment
+  - name: RealtimeSegments_CreateSegment
+    description: "Create segment"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_CreateSegment
+  - name: RealtimeSegments_InstallSegment
+    description: "Update segment"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_InstallSegment
+  - name: RealtimeSegments_ValidateSegment
+    description: "Validate segment"
+    source_operation: openapi/zaius-realtimesegments-openapi.json#RealtimeSegments_ValidateSegment
+  - name: get-recommended-products
+    description: "Get Recommended Products"
+    source_operation: openapi/zaius-recommendations-openapi.json#get-recommended-products

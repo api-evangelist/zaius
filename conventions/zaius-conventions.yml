@@ -1,0 +1,49 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
+docs:
+  authentication: https://docs.developers.optimizely.com/optimizely-data-platform/reference/authentication
+  rate_limits: https://docs.developers.optimizely.com/optimizely-data-platform/reference/rate-limits
+  batch: https://docs.developers.optimizely.com/optimizely-data-platform/reference/batch-requests
+authentication:
+  style: api-key-header
+  header: x-api-key
+  key_types:
+    - name: public
+      alias: Tracker ID
+      use: data-send calls and limited, publicly-exposable retrieval calls
+    - name: private
+      use: querying ODP data from trusted backend services and integrations
+      revocation_grace: revoked private keys remain functional for a 12-hour grace period
+  key_location: ODP UI Settings > APIs
+versioning:
+  scheme: uri-path
+  current: v3
+  base_path: /v3
+regions:
+  - id: us1
+    base_url: https://api.us1.odp.optimizely.com/v3
+  - id: eu1
+    base_url: https://api.eu1.odp.optimizely.com/v3
+  - id: au1
+    base_url: https://api.au1.odp.optimizely.com/v3
+batching:
+  supported: true
+  max_objects_per_request: 500
+  note: Bulk data push should be batched; each request may include up to 500 distinct objects.
+rate_limiting:
+  default_limit: 10 requests/second
+  worked_example: 500 objects/request x 10 req/s = 5,000 customer updates/second
+  higher_limits: contact Optimizely support
+  signaling: HTTP 429 when exceeded
+error_envelope:
+  format: plain-json
+  problem_details: false
+  status_codes: [400, 403, 404, 422]
+  cross_reference: errors/zaius-problem-types.yml
+graphql:
+  endpoint_suffix: /v3/graphql
+  use: query segments, profiles, list subscriptions and facets
+idempotency:
+  supported: false
+  note: ODP ingestion is upsert-based (customers/objects are created-or-updated by identifier), which is naturally idempotent, but ODP does not document an explicit Idempotency-Key header.

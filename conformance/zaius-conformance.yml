@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: docs.developers.optimizely.com OpenAPI + optimizely.com/trust-center
+standards:
+  - id: oauth2
+    conforms: false
+    evidence: ODP uses x-api-key apiKey auth, not OAuth2
+  - id: rfc9457-problem-details
+    conforms: false
+    evidence: errors returned as plain JSON with HTTP status codes, not application/problem+json
+  - id: graphql
+    conforms: true
+    evidence: ODP exposes a GraphQL API at /v3/graphql for querying segments and profiles
+  - id: gdpr
+    conforms: true
+    evidence: /compliance/gdpr/delete + status endpoints (advanced.json)
+  - id: ccpa
+    conforms: true
+    evidence: /compliance/ccpa/delete + /compliance/ccpa/optout endpoints
+  - id: lgpd
+    conforms: true
+    evidence: /compliance/lgpd/delete + status endpoints
+  - id: soc2
+    conforms: true
+    evidence: Optimizely trust center lists SOC 2
+  - id: iso27001
+    conforms: true
+    evidence: Optimizely trust center lists ISO 27001/27017/27018
+  - id: pci-dss
+    conforms: true
+    evidence: Optimizely trust center lists PCI DSS
+  - id: hipaa
+    conforms: true
+    evidence: Optimizely trust center lists HIPAA
+compliance_program: https://www.optimizely.com/trust-center/compliance

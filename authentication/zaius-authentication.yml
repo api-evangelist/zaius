@@ -1,0 +1,34 @@
+generated: '2026-07-21'
+method: searched
+source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/authentication
+docs: https://docs.developers.optimizely.com/optimizely-data-platform/reference/authentication
+summary:
+  types:
+  - apiKey
+  api_key_in:
+  - header
+key_types:
+- name: public
+  alias: Tracker ID
+  use: most data-send calls and limited, publicly-exposable retrieval calls
+- name: private
+  use: querying ODP data from trusted backend services and integrations
+  revocation_grace: revoked private keys remain valid for a 12-hour grace period
+key_location: ODP UI Settings > APIs (lists public + private keys with usage plans and rate limits)
+schemes:
+- name: x-api-key
+  type: apiKey
+  in: header
+  parameter: x-api-key
+  sources:
+  - openapi/zaius-advanced-openapi.json
+  - openapi/zaius-consent-openapi.json
+  - openapi/zaius-customers-openapi.json
+  - openapi/zaius-events-openapi.json
+  - openapi/zaius-exports-openapi.json
+  - openapi/zaius-lists-openapi.json
+  - openapi/zaius-objects-openapi.json
+  - openapi/zaius-orders-openapi.json
+  - openapi/zaius-products-openapi.json
+  - openapi/zaius-realtimesegments-openapi.json
+  - openapi/zaius-recommendations-openapi.json

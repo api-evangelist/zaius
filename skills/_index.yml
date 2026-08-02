@@ -1,0 +1,11 @@
+generated: '2026-07-21'
+method: generated
+skills:
+  - file: zaius-ingest-customers-and-events.md
+    name: Ingest customers and events into ODP
+    api: openapi/zaius-customers-openapi.json
+    operations: [createupdate-customers, upload-events, update-object, update-products]
+  - file: zaius-manage-realtime-segments.md
+    name: Manage ODP real-time segments
+    api: openapi/zaius-realtimesegments-openapi.json
+    operations: [RealtimeSegments_ListSegments, RealtimeSegments_GetSegment, RealtimeSegments_CreateSegment, RealtimeSegments_ValidateSegment, RealtimeSegments_InstallSegment, RealtimeSegments_UninstallSegment]

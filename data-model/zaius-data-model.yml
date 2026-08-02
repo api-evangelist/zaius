@@ -1,0 +1,80 @@
+generated: '2026-07-21'
+method: derived
+source: derived from OpenAPI id-reference fields across openapi/*.json; ODP data-structure docs
+docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-data-structure
+entities:
+  - name: customer
+    api: openapi/zaius-customers-openapi.json
+    description: "A person/profile in ODP, keyed by identifier fields (email, vuid, phone, customer_id)."
+  - name: event
+    api: openapi/zaius-events-openapi.json
+    description: "A timestamped action a customer takes; the core behavioral record."
+  - name: order
+    api: openapi/zaius-orders-openapi.json
+    description: "A purchase, return, refund or cancellation event tied to a customer."
+  - name: product
+    api: openapi/zaius-products-openapi.json
+    description: "A catalog item referenced by orders and recommendations."
+  - name: object
+    api: openapi/zaius-objects-openapi.json
+    description: "A custom object/entity instance updated via the objects API."
+  - name: list
+    api: openapi/zaius-lists-openapi.json
+    description: "A messaging/subscription list a customer identifier can subscribe to."
+  - name: consent
+    api: openapi/zaius-consent-openapi.json
+    description: "A customer's marketing-consent record per identifier."
+  - name: segment
+    api: openapi/zaius-realtimesegments-openapi.json
+    description: "A real-time audience segment definition."
+  - name: schema_object
+    api: openapi/zaius-advanced-openapi.json
+    description: "A schema definition: objects, fields, relationships, identifiers."
+  - name: recommendation
+    api: openapi/zaius-recommendations-openapi.json
+    description: "A recommended-products response for a customer."
+relationships:
+  - from: event
+    type: belongs_to
+    to: customer
+    via: "identifiers"
+  - from: order
+    type: belongs_to
+    to: customer
+    via: "identifiers"
+  - from: order
+    type: has_many
+    to: product
+    via: "order.items"
+  - from: recommendation
+    type: belongs_to
+    to: customer
+    via: "identifier"
+  - from: recommendation
+    type: has_many
+    to: product
+    via: "products"
+  - from: consent
+    type: belongs_to
+    to: customer
+    via: "identifier_field_name"
+  - from: list
+    type: has_many
+    to: customer
+    via: "subscriptions"
+  - from: customer
+    type: has_many
+    to: event
+    via: "-"
+  - from: customer
+    type: has_many
+    to: order
+    via: "-"
+  - from: segment
+    type: has_many
+    to: customer
+    via: "members"
+  - from: object
+    type: belongs_to
+    to: schema_object
+    via: "object_name"

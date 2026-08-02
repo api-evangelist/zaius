@@ -1,0 +1,35 @@
+generated: '2026-07-21'
+method: searched
+source: npm registry (ZaiusInc / @zaiusinc scope) + ODP SDK docs
+packages:
+  - language: javascript
+    registry: npm
+    name: "@zaiusinc/node-sdk"
+    version: 3.0.0
+    url: https://www.npmjs.com/package/@zaiusinc/node-sdk
+    repository: https://github.com/ZaiusInc/node-sdk
+    install: npm install @zaiusinc/node-sdk
+    description: Node SDK for Optimizely Data Platform (ODP).
+    official: true
+  - language: javascript
+    registry: npm
+    name: "@zaiusinc/react-native-sdk"
+    version: 1.2.0
+    url: https://www.npmjs.com/package/@zaiusinc/react-native-sdk
+    docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/get-started-with-react-native-sdk
+    install: npm install --save @zaiusinc/react-native-sdk @react-native-async-storage/async-storage react-native-push-notification
+    description: ODP React Native SDK module for tracking events and customer data in React Native apps.
+    official: true
+  - language: javascript
+    registry: npm
+    name: "@zaiusinc/app-sdk"
+    version: 3.4.1
+    url: https://www.npmjs.com/package/@zaiusinc/app-sdk
+    repository: https://github.com/ZaiusInc/app-sdk
+    install: npm install @zaiusinc/app-sdk
+    description: Optimizely Connect Platform (OCP) App SDK and interfaces for building ODP integrations.
+    official: true
+web_tag:
+  name: ODP Web SDK (JavaScript tag)
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/get-started-with-web-sdk
+  note: The ODP Web SDK is delivered as an on-page JavaScript tag rather than an npm package.

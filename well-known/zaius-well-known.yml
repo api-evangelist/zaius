@@ -1,0 +1,30 @@
+generated: '2026-07-21'
+method: probed
+source: live /.well-known/ probes of ODP API hosts and legacy api.zaius.com
+hosts:
+  - host: https://api.us1.odp.optimizely.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+  - host: https://api.zaius.com
+    note: legacy Zaius API host, now returns 404 at root (superseded by regional ODP hosts)
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/openid-configuration
+        status: 404
+      - path: /.well-known/oauth-authorization-server
+        status: 404
+      - path: /.well-known/api-catalog
+        status: 404
+      - path: /.well-known/ai-plugin.json
+        status: 404
+result: none-found
