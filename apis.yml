@@ -22,7 +22,7 @@ accessModel:
   - authentication
   generated: '2026-07-22'
   method: derived
-image: https://www.optimizely.com/products/data-platform
+image: https://images3.cmp.optimizely.com/Zz1hOTU5MjFjNDY5MWYxMWYxOTU5NmZlODFjZDBjMWExMg==?width=1200
 x-type: company
 x-source: vc-portfolio
 x-backed-by:
@@ -31,7 +31,7 @@ x-tier: stub
 x-tier-reason: portfolio-lead
 specificationVersion: '0.20'
 created: '2026-07-17'
-modified: '2026-07-21'
+modified: '2026-08-13'
 tags:
 - Company
 - Customer Data Platform
@@ -286,8 +286,20 @@ common:
   url: security/zaius-domain-security.yml
 - type: Overlay
   url: overlays/zaius-events-overlay.yaml
+- type: ChangeLog
+  url: changelog/zaius-changelog.yml
+- type: RateLimits
+  url: rate-limits/zaius-rate-limits.yml
+- type: Plans
+  url: plans/zaius-plans-pricing.yml
+- type: CLI
+  url: cli/zaius-cli.yml
+- type: Sandbox
+  url: sandbox/zaius-sandbox.yml
+- type: ToolCrosswalk
+  url: mcp/zaius-tool-crosswalk.yml
 x-enrichment:
-  date: '2026-07-21'
+  date: '2026-08-13'
   status: enriched
-  artifacts_added: 37
+  artifacts_added: 10
   pass: local-v1
