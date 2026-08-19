@@ -1,0 +1,60 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Customers API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Customers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Customer Information",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/profiles",
+            "params": [
+              {
+                "name": "params",
+                "value": "",
+                "type": "query",
+                "description": "The name and value for any single identifier. Replace this with any valid identifier (for example, email, vuid, and so on)."
+              }
+            ]
+          },
+          "docs": "Get the attributes and identifiers associated with a customer."
+        },
+        {
+          "info": {
+            "name": "Create and update customers",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/profiles",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update the attributes and identifiers of a customer."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

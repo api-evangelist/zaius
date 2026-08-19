@@ -1,6 +1,14 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: probed
-source: live /.well-known/ probes of ODP API hosts and legacy api.zaius.com
+source: live /.well-known/ probes of ODP API hosts, the docs host, optimizely.com and legacy api.zaius.com
+checked: '2026-08-13'
+result: none-found
+note: >-
+  Every /.well-known/ path 404s on every host that matters. IMPORTANT — the docs host
+  docs.developers.optimizely.com (ReadMe) answers HTTP 200 with the same 1.18 MB SPA HTML shell for EVERY
+  unknown path, including /.well-known/agent-card.json, /.well-known/agent.json, /.well-known/security.txt
+  and /openapi.json. Those 200s are NOT documents and are recorded as soft-200 misses. No WellKnown or
+  SecurityTxt pointer is emitted in apis.yml, because nothing here is a real served document.
 hosts:
   - host: https://api.us1.odp.optimizely.com
     documents:
@@ -10,12 +18,61 @@ hosts:
         status: 404
       - path: /.well-known/oauth-authorization-server
         status: 404
+      - path: /.well-known/oauth-protected-resource
+        status: 404
       - path: /.well-known/api-catalog
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.eu1.odp.optimizely.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://api.au1.odp.optimizely.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://www.optimizely.com
+    documents:
+      - path: /.well-known/security.txt
+        status: 404
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404
+  - host: https://docs.developers.optimizely.com
+    note: ReadMe-hosted SPA — returns 200 with an HTML shell for every unknown path; treat all 200s below as misses
+    documents:
+      - path: /.well-known/security.txt
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent-card.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /.well-known/agent.json
+        status: 200
+        soft_200: true
+        content_type: text/html
+      - path: /openapi.json
+        status: 200
+        soft_200: true
+        content_type: text/html
   - host: https://api.zaius.com
-    note: legacy Zaius API host, now returns 404 at root (superseded by regional ODP hosts)
+    note: legacy Zaius API host, superseded by regional ODP hosts
     documents:
       - path: /.well-known/security.txt
         status: 404
@@ -27,4 +84,7 @@ hosts:
         status: 404
       - path: /.well-known/ai-plugin.json
         status: 404
-result: none-found
+      - path: /.well-known/agent-card.json
+        status: 404
+      - path: /.well-known/agent.json
+        status: 404

@@ -1,0 +1,491 @@
+generated: '2026-08-13'
+method: derived
+source: mcp/zaius-mcp.yml + openapi/*.yml + ODP GraphQL documentation
+note: 'Optimizely publishes no MCP server for the Data Platform (see mcp/zaius-mcp.yml), so the tool column is the
+  DERIVED candidate tool set, not a shipped surface. The GraphQL column is real and documented but its live schema
+  is gated: anonymous introspection against https://api.us1.odp.optimizely.com/v3/graphql returns HTTP 403 Forbidden,
+  so GraphQL fields are mapped from the published documentation by name and semantics, not from an introspected
+  SDL.'
+surfaces:
+  openapi:
+    files: 17
+    path: openapi/
+    operations: 45
+    gated: false
+  graphql:
+    endpoint: https://api.us1.odp.optimizely.com/v3/graphql
+    docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/forming-calls-with-graphql
+    gated: true
+    probe:
+      method: POST
+      query: '{__schema{queryType{name}}}'
+      http_status: 403
+      body: '{"message":"Forbidden"}'
+      checked: '2026-08-13'
+  mcp:
+    url: null
+    status: none-published
+    gated: null
+crosswalk:
+- tool: gdpr-delete
+  category: compliance
+  rest:
+  - gdpr-delete
+  binding: POST /compliance/gdpr/delete
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: ccpa-delete
+  category: compliance
+  rest:
+  - ccpa-delete
+  binding: POST /compliance/ccpa/delete
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: ccpa-optout
+  category: compliance
+  rest:
+  - ccpa-optout
+  binding: POST /compliance/ccpa/optout
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: lgpd-delete
+  category: compliance
+  rest:
+  - lgpd-delete
+  binding: POST /compliance/lgpd/delete
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: gdpr-status
+  category: compliance
+  rest:
+  - gdpr-status
+  binding: GET /compliance/gdpr/status/{requestId}
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: ccpa-status
+  category: compliance
+  rest:
+  - ccpa-status
+  binding: GET /compliance/ccpa/status/{requestId}
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: lgpd-status
+  category: compliance
+  rest:
+  - lgpd-status
+  binding: GET /compliance/lgpd/status/{requestId}
+  spec: openapi/zaius-compliance-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: create-object
+  category: schema
+  rest:
+  - create-object
+  binding: POST /schema/objects
+  spec: openapi/zaius-object-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: list-objects
+  category: schema
+  rest:
+  - list-objects
+  binding: GET /schema/objects
+  spec: openapi/zaius-object-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-object
+  category: schema
+  rest:
+  - get-object
+  binding: GET /schema/objects/{object_name}
+  spec: openapi/zaius-object-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: create-field
+  category: schema
+  rest:
+  - create-field
+  binding: POST /schema/objects/{object_name}/fields
+  spec: openapi/zaius-fields-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: list-fields
+  category: schema
+  rest:
+  - list-fields
+  binding: GET /schema/objects/{object_name}/fields
+  spec: openapi/zaius-fields-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-field
+  category: schema
+  rest:
+  - get-field
+  binding: GET /schema/objects/{object_name}/fields/{field_name}
+  spec: openapi/zaius-fields-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: create-relationship
+  category: schema
+  rest:
+  - create-relationship
+  binding: POST /schema/objects/{object_name}/relations
+  spec: openapi/zaius-relationships-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: list-relations
+  category: schema
+  rest:
+  - list-relations
+  binding: GET /schema/objects/{object_name}/relations
+  spec: openapi/zaius-relationships-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-relation
+  category: schema
+  rest:
+  - get-relation
+  binding: GET /schema/objects/{object_name}/relations/{relation_name}
+  spec: openapi/zaius-relationships-schema-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: update-reachability
+  category: reachability
+  rest:
+  - update-reachability
+  binding: POST /reachability
+  spec: openapi/zaius-reachability-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-reachability
+  category: reachability
+  rest:
+  - get-reachability
+  binding: GET /reachability/{identifier_field_name}
+  spec: openapi/zaius-reachability-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: create-identifier
+  category: schema
+  rest:
+  - create-identifier
+  binding: POST /schema/identifiers
+  spec: openapi/zaius-identifiers-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: update-identifier-metadata
+  category: identifiers
+  rest:
+  - update-identifier-metadata
+  binding: POST /identifiers
+  spec: openapi/zaius-identifiers-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-identifier-metadata
+  category: identifiers
+  rest:
+  - get-identifier-metadata
+  binding: GET /identifiers/{field_name}
+  spec: openapi/zaius-identifiers-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: consent-legacy
+  category: lists
+  rest:
+  - consent-legacy
+  binding: POST /lists/subscriptions
+  spec: openapi/zaius-consent-legacy-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: update-consent
+  category: consent
+  rest:
+  - update-consent
+  binding: POST /consent
+  spec: openapi/zaius-consent-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-consent
+  category: consent
+  rest:
+  - get-consent
+  binding: GET /consent/{identifier_field_name}
+  spec: openapi/zaius-consent-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-customer-information
+  category: customers
+  rest:
+  - get-customer-information
+  binding: GET /profiles
+  spec: openapi/zaius-customers-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: createupdate-customers
+  category: customers
+  rest:
+  - createupdate-customers
+  binding: POST /profiles
+  spec: openapi/zaius-customers-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: upload-events
+  category: events
+  rest:
+  - upload-events
+  binding: POST /events
+  spec: openapi/zaius-events-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: export
+  category: exports
+  rest:
+  - export
+  binding: POST /exports
+  spec: openapi/zaius-exports-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: export_1
+  category: exports
+  rest:
+  - export_1
+  binding: POST /export-segment-members
+  spec: openapi/zaius-exports-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: getExportJobStatus
+  category: exports
+  rest:
+  - getExportJobStatus
+  binding: GET /exports/{exportJobId}
+  spec: openapi/zaius-exports-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: getSegmentExportJobStatus
+  category: exports
+  rest:
+  - getSegmentExportJobStatus
+  binding: GET /export-segment-members/{exportJobId}
+  spec: openapi/zaius-exports-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-subscription-status
+  category: lists
+  rest:
+  - get-subscription-status
+  binding: GET /lists/subscriptions
+  spec: openapi/zaius-lists-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: subscribeunsubscribe
+  category: lists
+  rest:
+  - subscribeunsubscribe
+  binding: POST /lists/subscriptions
+  spec: openapi/zaius-lists-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-lists
+  category: lists
+  rest:
+  - get-lists
+  binding: GET /lists
+  spec: openapi/zaius-lists-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: create-list
+  category: lists
+  rest:
+  - create-list
+  binding: POST /lists
+  spec: openapi/zaius-lists-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: update-object
+  category: objects
+  rest:
+  - update-object
+  binding: POST /objects/{object_name}
+  spec: openapi/zaius-objects-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: order-returnrefund
+  category: events
+  rest:
+  - order-returnrefund
+  binding: POST /events
+  spec: openapi/zaius-orders-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: update-products
+  category: objects
+  rest:
+  - update-products
+  binding: POST /objects/products
+  spec: openapi/zaius-products-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_ListSegments
+  category: segments
+  rest:
+  - RealtimeSegments_ListSegments
+  binding: GET /segments
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_GetSegment
+  category: segments
+  rest:
+  - RealtimeSegments_GetSegment
+  binding: GET /segments/{segment_id}
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_UninstallSegment
+  category: segments
+  rest:
+  - RealtimeSegments_UninstallSegment
+  binding: DELETE /segments/{segment_id}
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_CreateSegment
+  category: segments
+  rest:
+  - RealtimeSegments_CreateSegment
+  binding: POST /segments/{segment_id}
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_InstallSegment
+  category: segments
+  rest:
+  - RealtimeSegments_InstallSegment
+  binding: PUT /segments/{segment_id}
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: RealtimeSegments_ValidateSegment
+  category: segments
+  rest:
+  - RealtimeSegments_ValidateSegment
+  binding: POST /segments/{segment_id}:validate
+  spec: openapi/zaius-realtimesegments-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+- tool: get-recommended-products
+  category: recommendations
+  rest:
+  - get-recommended-products
+  binding: GET /recommendations/products
+  spec: openapi/zaius-recommendations-api-openapi.yml
+  confidence: high
+  note: candidate MCP tool derived one-to-one from this OpenAPI operation; inherits its parameters and requestBody
+    as the tool inputSchema
+graphql_fields:
+- field: customer(vuid|zaius_id|email|customer_id)
+  category: customers
+  rest:
+  - get-customer-information
+  binding: GET /profiles
+  confidence: medium
+  note: GraphQL single-customer lookup by identifier; the REST equivalent reads the same profile record.
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/forming-calls-with-graphql
+- field: customers { edges { node } }
+  category: customers
+  rest: []
+  binding: null
+  confidence: high
+  note: Dimension-wide customer query with connection pagination. No REST equivalent — the REST profiles endpoint
+    reads one customer at a time.
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/forming-calls-with-graphql
+- field: customers { facets { <field> } }
+  category: customers
+  rest: []
+  binding: null
+  confidence: high
+  note: Aggregated facet counts (top 10, descending by occurrence) over a dimension column. No REST equivalent.
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/facet-queries
+- field: 'customer { audiences(subset: [...]) }'
+  category: segments
+  rest:
+  - RealtimeSegments_ListSegments
+  - RealtimeSegments_GetSegment
+  binding: GET /segments, GET /segments/{segment_id}
+  confidence: low
+  note: Reads a customer's real-time segment MEMBERSHIP; the REST segments API defines and manages segments but
+    does not evaluate membership. Related surfaces, not the same operation.
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/realtimesegments-querying-real-time-segments
+- field: 'customer { list_member(list_id: "...") }'
+  category: lists
+  rest:
+  - get-subscription-status
+  binding: GET /lists/subscriptions
+  confidence: medium
+  note: Per-customer list subscription state; the REST subscription-status operation returns the same fact.
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/list-subscription-querying
+mcp_only: []
+rest_only: []
+coverage:
+  mcp_tools: 45
+  rest_operations: 45
+  bound: 45
+  mcp_only: 0
+  rest_only: 0
+  graphql_fields_documented: 5
+  graphql_fields_with_rest_equivalent: 3
+cross_reference:
+- mcp/zaius-mcp.yml
+- conventions/zaius-conventions.yml
+- authentication/zaius-authentication.yml
+- errors/zaius-problem-types.yml

@@ -1,0 +1,33 @@
+generated: '2026-08-13'
+method: searched
+source: https://www.optimizely.com/pricing/
+docs: https://www.optimizely.com/pricing/
+product: Optimizely Data Platform (formerly Zaius)
+plan_count: 0
+pricing_model: contact-sales
+public_pricing: false
+free_tier: false
+trial: false
+note: >-
+  Optimizely publishes no plan names, prices, quotas or overage rates for the Data Platform. The pricing
+  page states that "Every Optimizely plan is individually packaged" and routes every product — including
+  Data Platform — to a sales conversation. There is no self-serve checkout and no published API metering
+  or per-call price. An honest zero: the plans are not hidden behind a login, they are simply not
+  published anywhere on the public site.
+plans: []
+quota_signals:
+  - kind: rate-limit
+    detail: Default per-API-family request rates are published (see rate-limits/zaius-rate-limits.yml); they are documented as technical limits, not as plan entitlements.
+    source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/rate-limits
+  - kind: batch-size
+    detail: Up to 500 distinct objects per request.
+    source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/batch-requests
+contact:
+  url: https://www.optimizely.com/pricing/
+  method: sales form
+evidence:
+  - url: https://www.optimizely.com/pricing/
+    status: 200
+    finding: no tier names, no prices, no currencies, no billing periods; individually packaged plans only
+cross_reference:
+  - rate-limits/zaius-rate-limits.yml

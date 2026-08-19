@@ -1,0 +1,415 @@
+{
+  "item": [
+    {
+      "id": "d0af877e-de29-4da9-b241-1dbce0ce9631",
+      "name": "Reachability",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "668b4cf0-ccad-467f-b34d-a1cd5a1a6700",
+          "name": "Update reachability",
+          "request": {
+            "name": "Update reachability",
+            "description": {
+              "content": "Update reachability for a messaging identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reachability"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"identifier_value\": \"<string>\",\n  \"identifier_field_name\": \"<string>\",\n  \"reachable\": true,\n  \"reachable_update_type\": \"<string>\",\n  \"reachable_update_reason\": \"<string>\",\n  \"reachable_update_ts\": \"<string>\",\n  \"zaius_id\": \"<integer>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d7af1c8c-37c3-42b8-a24a-8e61219b5f84",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reachability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"identifier_value\": \"email@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": false,\n    \"reachable_update_type\": \"hard_bounce\"\n  },\n  {\n    \"identifier_value\": \"email2@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"title\\\": \\\"Accepted\\\",\\n  \\\"status\\\": 202,\\n  \\\"timestamp\\\": \\\"2019-07-30T23:55:00.519Z\\\"\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7bee1392-e558-4048-ba5d-542f92b5ac26",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reachability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"identifier_value\": \"email@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": false,\n    \"reachable_update_type\": \"hard_bounce\"\n  },\n  {\n    \"identifier_value\": \"email2@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\n  \\\"title\\\": \\\"Bad Request\\\",\\n  \\\"status\\\": 400,\\n  \\\"timestamp\\\": \\\"2019-07-30T23:53:48.615Z\\\",\\n  \\\"detail\\\": {\\n    \\\"message\\\": \\\"Unable to parse request body.\\\"\\n  }\\n}\\n\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3ac76cd9-98d1-46ec-8115-b9477161aa19",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reachability"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"identifier_value\": \"email@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": false,\n    \"reachable_update_type\": \"hard_bounce\"\n  },\n  {\n    \"identifier_value\": \"email2@optimizely.com\",\n    \"identifier_field_name\": \"email\",\n    \"reachable\": true\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Forbidden\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "a80f5c09-559c-4a19-b94b-81690bceb687",
+          "name": "Get reachability",
+          "request": {
+            "name": "Get reachability",
+            "description": {
+              "content": "Retrieve reachability information for a specific identifier.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "reachability",
+                ":identifier_field_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "id",
+                  "value": "<string>",
+                  "description": "(Required) A valid messaging identifier (for example, an email address)."
+                }
+              ],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "identifier_field_name",
+                  "description": "(Required) The name of the field that this identifiers falls under (for example, email)."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "2a919fd1-9a70-47de-aab5-c2f4a2c751f1",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reachability",
+                    ":identifier_field_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier_field_name",
+                      "description": "(Required) The name of the field that this identifiers falls under (for example, email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"identifier_field_name\": \"email\",\n  \"identifier_value\": \"test@optimizely.com\",\n  \"reachable_update_type\": \"hard_bounce\",\n  \"reachable_update_reason\": \"5xx from mailbox provider\",\n  \"reachable_update_ts\": 1572721108,\n  \"reachable\": false,\n  \"zaius_id\": 3355837520960160000\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1fa9cd3-ebd3-4ec8-9811-d11846439899",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "reachability",
+                    ":identifier_field_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "id",
+                      "value": "<string>"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "identifier_field_name",
+                      "description": "(Required) The name of the field that this identifiers falls under (for example, email)."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Forbidden\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.us1.odp.optimizely.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f61d2657-c191-482d-a788-2aa290c8439d",
+    "name": "Advanced Compliance Reachability API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Advanced",
+      "type": "text/plain"
+    }
+  }
+}

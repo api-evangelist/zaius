@@ -1,0 +1,626 @@
+{
+  "item": [
+    {
+      "id": "35db333a-424d-4bb3-b302-177bb290d1fa",
+      "name": "Object schema",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "a155172f-05f9-45b8-a903-64ba178070e4",
+          "name": "Create object",
+          "request": {
+            "name": "Create object",
+            "description": {
+              "content": "Create a new Object within Optimizely Data Platform (ODP), define its fields and how it relates to other objects.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schema",
+                "objects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"<string>\",\n  \"display_name\": \"<string>\",\n  \"public_read\": false,\n  \"alias\": \"<string>\",\n  \"fields\": [\n    {\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": true\n    },\n    {\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"type\": \"<string>\",\n      \"primary\": true\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"child_object\": \"<string>\",\n      \"join_fields\": [\n        {\n          \"parent\": \"<string>\",\n          \"child\": \"<string>\"\n        },\n        {\n          \"parent\": \"<string>\",\n          \"child\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"name\": \"<string>\",\n      \"display_name\": \"<string>\",\n      \"child_object\": \"<string>\",\n      \"join_fields\": [\n        {\n          \"parent\": \"<string>\",\n          \"child\": \"<string>\"\n        },\n        {\n          \"parent\": \"<string>\",\n          \"child\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "d3af2c49-cc13-49cc-a60e-cd472270f91f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"objects\",\n  \"display_name\": \"Object\",\n  \"public_read\": false,\n  \"alias\": \"object\",\n  \"fields\": [\n    {\n      \"name\": \"object_id\",\n      \"display_name\": \"New Object Identifier\",\n      \"public_read\": false,\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"name\": \"another_field\",\n      \"display_name\": \"Another Fields\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"child_id\",\n      \"display_name\": \"Child Identifier\",\n      \"type\": \"number\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"my_relation\",\n      \"display_name\": \"My Relationship\",\n      \"public_read\": false,\n      \"child_object\": \"child\",\n      \"join_fields\": [\n        {\n          \"parent\": \"child_id\",\n          \"child\": \"child_id\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"objects\",\n  \"display_name\": \"Object\",\n  \"alias\": \"object\",\n  \"fields\": [\n    {\n      \"name\": \"object_id\",\n      \"display_name\": \"New Object Identifier\",\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"name\": \"another_field\",\n      \"display_name\": \"Another Fields\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"child_id\",\n      \"display_name\": \"Child Identifier\",\n      \"type\": \"number\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"my_relation\",\n      \"display_name\": \"My Relationship\",\n      \"child_object\": \"child\",\n      \"join_fields\": [\n        {\n          \"parent\": \"child_id\",\n          \"child\": \"child_id\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "60055411-d71f-469d-b9cd-79fe8e872dbf",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"objects\",\n  \"display_name\": \"Object\",\n  \"public_read\": false,\n  \"alias\": \"object\",\n  \"fields\": [\n    {\n      \"name\": \"object_id\",\n      \"display_name\": \"New Object Identifier\",\n      \"public_read\": false,\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"name\": \"another_field\",\n      \"display_name\": \"Another Fields\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"child_id\",\n      \"display_name\": \"Child Identifier\",\n      \"type\": \"number\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"my_relation\",\n      \"display_name\": \"My Relationship\",\n      \"public_read\": false,\n      \"child_object\": \"child\",\n      \"join_fields\": [\n        {\n          \"parent\": \"child_id\",\n          \"child\": \"child_id\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"Bad Request\",\n  \"status\": 400,\n  \"timestamp\": \"2018-08-07T13:44:17.659Z\",\n  \"detail\": {\n    \"invalids\": [\n      {\n        \"field\": \"name\",\n        \"reason\": \"already used by another object\"\n      },\n      {\n        \"field\": \"alias\",\n        \"reason\": \"already used by another object\"\n      },\n      {\n        \"field\": \"display_name\",\n        \"reason\": \"already used by another object\"\n      },\n      {\n        \"field\": \"fields\",\n        \"reason\": \"at least one primary key field required\"\n      },\n      {\n        \"field\": \"relations[0].child_object\",\n        \"reason\": \"does not exist\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d066d3ac-bc60-42fb-b4c8-0f9c9b58c63a",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"name\": \"objects\",\n  \"display_name\": \"Object\",\n  \"public_read\": false,\n  \"alias\": \"object\",\n  \"fields\": [\n    {\n      \"name\": \"object_id\",\n      \"display_name\": \"New Object Identifier\",\n      \"public_read\": false,\n      \"type\": \"string\",\n      \"primary\": true\n    },\n    {\n      \"name\": \"another_field\",\n      \"display_name\": \"Another Fields\",\n      \"type\": \"string\"\n    },\n    {\n      \"name\": \"child_id\",\n      \"display_name\": \"Child Identifier\",\n      \"type\": \"number\"\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"my_relation\",\n      \"display_name\": \"My Relationship\",\n      \"public_read\": false,\n      \"child_object\": \"child\",\n      \"join_fields\": [\n        {\n          \"parent\": \"child_id\",\n          \"child\": \"child_id\"\n        }\n      ]\n    }\n  ]\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Forbidden\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c6558947-5138-43b9-9b8b-0e345ddf6fe6",
+          "name": "List objects",
+          "request": {
+            "name": "List objects",
+            "description": {
+              "content": "List the details of all objects within an Optimizely Data Platform (ODP) account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schema",
+                "objects"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "f2435684-1270-47a4-aadd-e436eee1e711",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"name\": \"tickets\",\n    \"display_name\": \"Tickets\",\n    \"alias\": \"ticket\",\n    \"fields\": [\n      {\n        \"name\": \"field_name\",\n        \"type\": \"number\",\n        \"display_name\": \"Display Name\",\n        \"primary\": true\n      }\n    ],\n    \"relations\": [\n      {\n        \"name\": \"my_relation\",\n        \"display_name\": \"My Relationship\",\n        \"child_object\": \"target_object_name\",\n        \"join_fields\": [\n          {\n            \"parent\": \"child_id\",\n            \"child\": \"child_id\"\n          }\n        ]\n      }\n    ]\n  },\n  {\n    \"name\": \"concerts\",\n    \"display_name\": \"Concerts\",\n    \"alias\": \"concert\",\n    \"fields\": [\n      {\n        \"name\": \"field_name\",\n        \"type\": \"number\",\n        \"display_name\": \"Display Name\",\n        \"primary\": true\n      }\n    ],\n    \"relations\": [\n      {\n        \"name\": \"my_relation\",\n        \"display_name\": \"My Relationship\",\n        \"child_object\": \"target_object_name\",\n        \"join_fields\": [\n          {\n            \"parent\": \"child_id\",\n            \"child\": \"child_id\"\n          }\n        ]\n      }\n    ]\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "5348b989-159d-47ed-867f-1a37579aae9e",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "f70424ed-f8d8-48ec-94e7-49ada9811697",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Forbidden\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "2881586d-3a7f-46f5-8f64-0859b9c39210",
+          "name": "Get object",
+          "request": {
+            "name": "Get object",
+            "description": {
+              "content": "List the details of a specific object in an Optimizely Data Platform (ODP) account.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "schema",
+                "objects",
+                ":object_name"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "object_name",
+                  "description": "(Required) The name of the object."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "99646cc3-c838-4f9c-9b9f-15487242eaae",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects",
+                    ":object_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_name",
+                      "description": "(Required) The name of the object."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"name\": \"tickets\",\n  \"display_name\": \"Tickets\",\n  \"alias\": \"ticket\",\n  \"fields\": [\n    {\n      \"name\": \"field_name\",\n      \"type\": \"number\",\n      \"display_name\": \"Display Name\",\n      \"primary\": true\n    }\n  ],\n  \"relations\": [\n    {\n      \"name\": \"my_relation\",\n      \"display_name\": \"My Relationship\",\n      \"child_object\": \"target_object_name\",\n      \"join_fields\": [\n        {\n          \"parent\": \"child_id\",\n          \"child\": \"child_id\"\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "95ffa8ae-917c-452e-850d-ba7ff6eb4d52",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects",
+                    ":object_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_name",
+                      "description": "(Required) The name of the object."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "7524ad79-d72f-4b91-9248-af5ddb844d79",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "schema",
+                    "objects",
+                    ":object_name"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "object_name",
+                      "description": "(Required) The name of the object."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"{\\\"message\\\": \\\"Forbidden\\\"}\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.us1.odp.optimizely.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "f6a9a64a-fd18-4a54-8590-ee21fcdefe15",
+    "name": "Advanced Compliance Object schema API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Advanced",
+      "type": "text/plain"
+    }
+  }
+}

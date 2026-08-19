@@ -1,0 +1,1055 @@
+{
+  "item": [
+    {
+      "id": "db2ea0a4-403c-4803-ab29-0e0ce1e520e4",
+      "name": "Exports",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "f0b15faf-ab1c-4345-9ac7-c017043865cb",
+          "name": "Start Data Export Job",
+          "request": {
+            "name": "Start Data Export Job",
+            "description": {
+              "content": "Export objects and events data from Optimizely to Amazon S3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exports"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delimiter\": \"<string>\",\n  \"format\": \"<string>\",\n  \"objects\": [\n    \"<string>\",\n    \"<string>\"\n  ],\n  \"select\": {\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"object\": \"<string>\",\n    \"filter\": {\n      \"key_0\": \"<object>\"\n    },\n    \"sorts\": [\n      \"<object>\",\n      \"<object>\"\n    ]\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "34aeeace-708a-4848-b6c9-d17450ddbe1a",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"object\": \"events\",\n    \"fields\": [\n      \"product.name\"\n    ],\n    \"filter\": {\n      \"field\": \"product.name\",\n      \"operator\": \"=\",\n      \"value\": \"%shoe%\"\n    },\n    \"sorts\": [\n      {\n        \"field\": \"product.name\",\n        \"order\": \"asc\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n  \"path\": \"s3://zaius-outgoing/kIFB_X1VG2gf6caBn8LHtg/data-exports/3aab9524-5248-45f9-8102-0399872a921e\",\n  \"requestedAt\": \"2018-09-11T02:07:10.000Z\",\n  \"state\": \"pending\",\n  \"exportRowCount\": 14,\n  \"exportType\": \"data\",\n  \"startedAt\": \"1965-01-27T00:58:06.773Z\",\n  \"endedAt\": \"1957-07-14T07:34:25.437Z\",\n  \"presignedUrls\": [\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\",\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\"\n  ],\n  \"active\": false,\n  \"format\": \"csv\",\n  \"running\": true,\n  \"terminated\": false,\n  \"delimiter\": \"pipe\",\n  \"routeBase\": \"string\",\n  \"trackerId\": \"string\",\n  \"complete\": true,\n  \"pending\": true,\n  \"childErrors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"detail\": {\n    \"format\": \"csv\",\n    \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n    \"delimiter\": \"comma\",\n    \"select\": {\n      \"fields\": [\n        \"product.name\"\n      ],\n      \"object\": \"events\",\n      \"filter\": {\n        \"key_0\": {\n          \"field\": \"product.name\",\n          \"operator\": \"=\",\n          \"value\": \"%shoe%\"\n        }\n      },\n      \"sorts\": [\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        },\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        }\n      ]\n    },\n    \"exportType\": \"data\",\n    \"objects\": [\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "aeafcdfd-2b35-4e83-9a0b-895bdc58b5da",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"object\": \"events\",\n    \"fields\": [\n      \"product.name\"\n    ],\n    \"filter\": {\n      \"field\": \"product.name\",\n      \"operator\": \"=\",\n      \"value\": \"%shoe%\"\n    },\n    \"sorts\": [\n      {\n        \"field\": \"product.name\",\n        \"order\": \"asc\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d22f27e0-e173-45e7-90b9-6c01fbc7f6fd",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"object\": \"events\",\n    \"fields\": [\n      \"product.name\"\n    ],\n    \"filter\": {\n      \"field\": \"product.name\",\n      \"operator\": \"=\",\n      \"value\": \"%shoe%\"\n    },\n    \"sorts\": [\n      {\n        \"field\": \"product.name\",\n        \"order\": \"asc\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "21ee602b-5456-48ac-8df2-5069be4d0f4c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"object\": \"events\",\n    \"fields\": [\n      \"product.name\"\n    ],\n    \"filter\": {\n      \"field\": \"product.name\",\n      \"operator\": \"=\",\n      \"value\": \"%shoe%\"\n    },\n    \"sorts\": [\n      {\n        \"field\": \"product.name\",\n        \"order\": \"asc\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "af1d2ab4-2f1b-410f-b781-5f123df20fb6",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"object\": \"events\",\n    \"fields\": [\n      \"product.name\"\n    ],\n    \"filter\": {\n      \"field\": \"product.name\",\n      \"operator\": \"=\",\n      \"value\": \"%shoe%\"\n    },\n    \"sorts\": [\n      {\n        \"field\": \"product.name\",\n        \"order\": \"asc\"\n      }\n    ]\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "247b3685-c54d-44ed-8dd1-93d235c86051",
+          "name": "Start Segment Members Export Job",
+          "request": {
+            "name": "Start Segment Members Export Job",
+            "description": {
+              "content": "Export segment membership data from Optimizely to Amazon S3.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export-segment-members"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"delimiter\": \"<string>\",\n  \"format\": \"<string>\",\n  \"select\": {\n    \"fields\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"segments\": [\n      \"<string>\",\n      \"<string>\"\n    ],\n    \"maxDelay\": \"<string>\"\n  }\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "3d723c5c-7f07-4236-97ba-851953b9aa5b",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"segments\": [\n      \"has_email\",\n      \"has_orders\"\n    ],\n    \"fields\": [\n      \"customer.zaius_id\",\n      \"customer.email\",\n      \"valid_time\",\n      \"qualifications\"\n    ],\n    \"maxDelay\": \"PT1H\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n  \"path\": \"s3://zaius-outgoing/kIFB_X1VG2gf6caBn8LHtg/data-exports/3aab9524-5248-45f9-8102-0399872a921e\",\n  \"requestedAt\": \"2018-09-11T02:07:10.000Z\",\n  \"state\": \"pending\",\n  \"exportRowCount\": 14,\n  \"exportType\": \"data\",\n  \"startedAt\": \"1980-10-04T08:05:27.681Z\",\n  \"endedAt\": \"1969-01-29T17:57:31.755Z\",\n  \"presignedUrls\": [\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\",\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\"\n  ],\n  \"active\": true,\n  \"format\": \"csv\",\n  \"running\": true,\n  \"terminated\": true,\n  \"delimiter\": \"comma\",\n  \"routeBase\": \"string\",\n  \"trackerId\": \"string\",\n  \"complete\": false,\n  \"pending\": false,\n  \"childErrors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"detail\": {\n    \"format\": \"csv\",\n    \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n    \"delimiter\": \"comma\",\n    \"select\": {\n      \"fields\": [\n        \"product.name\"\n      ],\n      \"object\": \"events\",\n      \"filter\": {\n        \"key_0\": {\n          \"field\": \"product.name\",\n          \"operator\": \"=\",\n          \"value\": \"%shoe%\"\n        }\n      },\n      \"sorts\": [\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        },\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        }\n      ]\n    },\n    \"exportType\": \"data\",\n    \"objects\": [\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "56a4daf1-e773-4880-b896-eb64efe093f7",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"segments\": [\n      \"has_email\",\n      \"has_orders\"\n    ],\n    \"fields\": [\n      \"customer.zaius_id\",\n      \"customer.email\",\n      \"valid_time\",\n      \"qualifications\"\n    ],\n    \"maxDelay\": \"PT1H\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "6f7f0f22-12cd-4a05-bc9a-0750c30491b2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"segments\": [\n      \"has_email\",\n      \"has_orders\"\n    ],\n    \"fields\": [\n      \"customer.zaius_id\",\n      \"customer.email\",\n      \"valid_time\",\n      \"qualifications\"\n    ],\n    \"maxDelay\": \"PT1H\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "eb64d0ce-af74-4326-b97b-76462686c952",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"segments\": [\n      \"has_email\",\n      \"has_orders\"\n    ],\n    \"fields\": [\n      \"customer.zaius_id\",\n      \"customer.email\",\n      \"valid_time\",\n      \"qualifications\"\n    ],\n    \"maxDelay\": \"PT1H\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "df3d302d-3da1-4b86-beb4-d264853dfa48",
+              "name": "Unprocessable Entity",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"format\": \"csv\",\n  \"delimiter\": \"comma\",\n  \"select\": {\n    \"segments\": [\n      \"has_email\",\n      \"has_orders\"\n    ],\n    \"fields\": [\n      \"customer.zaius_id\",\n      \"customer.email\",\n      \"valid_time\",\n      \"qualifications\"\n    ],\n    \"maxDelay\": \"PT1H\"\n  }\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unprocessable Entity (WebDAV) (RFC 4918)",
+              "code": 422,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "e709edf7-5676-44cd-b227-1748a38756a8",
+          "name": "Get Data Export Job Status",
+          "request": {
+            "name": "Get Data Export Job Status",
+            "description": {
+              "content": "Fetch the status of a data export request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "exports",
+                ":exportJobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exportJobId",
+                  "description": "(Required) The export job ID to check. Example: Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "08305e39-6695-43f7-923c-79bcb753b98f",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n  \"path\": \"s3://zaius-outgoing/kIFB_X1VG2gf6caBn8LHtg/data-exports/3aab9524-5248-45f9-8102-0399872a921e\",\n  \"requestedAt\": \"2018-09-11T02:07:10.000Z\",\n  \"state\": \"pending\",\n  \"exportRowCount\": 14,\n  \"exportType\": \"data\",\n  \"startedAt\": \"1980-10-04T08:05:27.681Z\",\n  \"endedAt\": \"1969-01-29T17:57:31.755Z\",\n  \"presignedUrls\": [\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\",\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\"\n  ],\n  \"active\": true,\n  \"format\": \"csv\",\n  \"running\": true,\n  \"terminated\": true,\n  \"delimiter\": \"comma\",\n  \"routeBase\": \"string\",\n  \"trackerId\": \"string\",\n  \"complete\": false,\n  \"pending\": false,\n  \"childErrors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"detail\": {\n    \"format\": \"csv\",\n    \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n    \"delimiter\": \"comma\",\n    \"select\": {\n      \"fields\": [\n        \"product.name\"\n      ],\n      \"object\": \"events\",\n      \"filter\": {\n        \"key_0\": {\n          \"field\": \"product.name\",\n          \"operator\": \"=\",\n          \"value\": \"%shoe%\"\n        }\n      },\n      \"sorts\": [\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        },\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        }\n      ]\n    },\n    \"exportType\": \"data\",\n    \"objects\": [\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0dace4b1-cdbf-4834-9afc-1f423c3532cc",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "9a00e2dd-9003-456c-b423-e34feef58f22",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "exports",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c0a5211c-3d14-4c53-8e0a-6b7aa09cf8b6",
+          "name": "Get Segment Export Job Status",
+          "request": {
+            "name": "Get Segment Export Job Status",
+            "description": {
+              "content": "Fetch the status of a segment export request.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "export-segment-members",
+                ":exportJobId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "exportJobId",
+                  "description": "(Required) The export job ID to check. Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a2064a60-ce3f-43ac-a8f4-fdb227449db4",
+              "name": "OK",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n  \"path\": \"s3://zaius-outgoing/kIFB_X1VG2gf6caBn8LHtg/data-exports/3aab9524-5248-45f9-8102-0399872a921e\",\n  \"requestedAt\": \"2018-09-11T02:07:10.000Z\",\n  \"state\": \"pending\",\n  \"exportRowCount\": 14,\n  \"exportType\": \"data\",\n  \"startedAt\": \"1980-10-04T08:05:27.681Z\",\n  \"endedAt\": \"1969-01-29T17:57:31.755Z\",\n  \"presignedUrls\": [\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\",\n    \"https://s3.amazonaws.com/abc123/data-exports/abc123/has_email_0_0_0.csv.gz?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Date=20250403T162222Z&X-Amz-SignedHeaders=host&X-Amz-Expires=3599&X-Amz-Credential=abc123%2Fus-east-1%2Fs3%2Faws4_request&X-Amz-Signature=abc123\"\n  ],\n  \"active\": true,\n  \"format\": \"csv\",\n  \"running\": true,\n  \"terminated\": true,\n  \"delimiter\": \"comma\",\n  \"routeBase\": \"string\",\n  \"trackerId\": \"string\",\n  \"complete\": false,\n  \"pending\": false,\n  \"childErrors\": [\n    \"string\",\n    \"string\"\n  ],\n  \"detail\": {\n    \"format\": \"csv\",\n    \"id\": \"3aab9524-5248-45f9-8102-0399872a921e\",\n    \"delimiter\": \"comma\",\n    \"select\": {\n      \"fields\": [\n        \"product.name\"\n      ],\n      \"object\": \"events\",\n      \"filter\": {\n        \"key_0\": {\n          \"field\": \"product.name\",\n          \"operator\": \"=\",\n          \"value\": \"%shoe%\"\n        }\n      },\n      \"sorts\": [\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        },\n        {\n          \"field\": \"product.name\",\n          \"order\": \"asc\"\n        }\n      ]\n    },\n    \"exportType\": \"data\",\n    \"objects\": [\n      \"string\"\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "d29a137b-0b84-466d-8c0f-b118db45acb2",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "babe686c-44f0-4ae1-88a2-8db8391ad5c8",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "export-segment-members",
+                    ":exportJobId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "exportJobId",
+                      "description": "(Required) The export job ID to check. Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "\"string\"",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.us1.odp.optimizely.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "a28503fe-0656-45fc-9592-b6efa0720532",
+    "name": "Advanced Compliance Exports API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Advanced",
+      "type": "text/plain"
+    }
+  }
+}

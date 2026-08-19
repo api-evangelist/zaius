@@ -53,7 +53,7 @@
 - [ODP + Commerce Connect 13](https://docs.developers.optimizely.com/optimizely-data-platform/docs/commerce-connect-13-odp.md): Export multisite Commerce Connect 13 data to Optimizely Data Platform (ODP)
 - [ODP + CMS](https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-cms-1.md): How to integrate Optimizely Data Platform with Optimizely Content Management System (PaaS) or (SaaS)
 - [ODP + Content Recommendations](https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-content-recommendations.md): How to integrate Optimizely Data Platform with Optimizely Content Recommendations
-- [Configure Real-Time Audiences to personalize CMS](https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-cms.md): Configure real-time CMS personalization with Optimizely Data Platform (ODP) to enhance user experiences and drive engagement.
+- [Configure real-time audiences to personalize CMS](https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-cms.md): Configure real-time CMS personalization with Optimizely Data Platform (ODP) to enhance user experiences and drive engagement.
 - [Configure Real-Time Audiences for Web Experimentation](https://docs.developers.optimizely.com/optimizely-data-platform/docs/odp-experimentation.md): You can integrate Optimizely Web Experimentation with Optimizely Data Platform (ODP) to use real-time segments from ODP as audiences in your Optimizely Web Experimentation experiments.
 
 ## API Reference

@@ -1,0 +1,72 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/rate-limits
+docs: https://docs.developers.optimizely.com/optimizely-data-platform/reference/rate-limits
+docs_updated: '2026-06-26'
+product: Optimizely Data Platform (formerly Zaius) REST + GraphQL APIs
+limit_count: 6
+scope_model: per-endpoint-family
+note: >-
+  ODP publishes default limits per API family rather than per key or per account. Optimizely states higher
+  limits are available on request via the Support team. The documentation does NOT publish rate-limit
+  response headers or the status code returned on exhaustion, so an agent cannot read remaining quota at
+  runtime — the only runtime signal is the error response itself.
+limits:
+  - api: Events
+    scope: per-endpoint
+    window: second
+    limit: null
+    stated: No limit
+    note: ODP documents no default limit on the events ingestion endpoint.
+  - api: Lists
+    scope: per-endpoint
+    window: second
+    limit: 10
+    stated: 10 requests per second
+  - api: Objects
+    scope: per-endpoint
+    window: second
+    limit: null
+    stated: No limit
+    note: ODP documents no default limit on the objects endpoints.
+  - api: On-Site GraphQL
+    scope: per-endpoint
+    window: second
+    limit: 500
+    stated: 500 requests per second
+    endpoint: https://api.us1.odp.optimizely.com/v3/graphql
+  - api: Profiles
+    scope: per-endpoint
+    window: second
+    limit: 10
+    stated: 10 requests per second
+  - api: Recommendations
+    scope: per-endpoint
+    window: second
+    limit: 100
+    stated: 100 requests per second
+batching:
+  max_objects_per_request: 500
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/reference/batch-requests
+  worked_example: 500 customers per request at 10 requests per second = 5,000 customer updates per second
+headers:
+  published: false
+  ratelimit_headers: []
+  retry_after: false
+  note: >-
+    No X-RateLimit-*, RateLimit-* or Retry-After headers are documented on the ODP rate-limits page. Not
+    probed against a live authenticated response — ODP rejects unauthenticated calls (403) before any
+    rate-limit accounting is observable.
+exhaustion:
+  status_code: null
+  note: >-
+    The rate-limits page does not state the status code returned when a limit is exceeded. Round-one
+    capture recorded HTTP 429 in conventions/zaius-conventions.yml; that value is not restated here
+    because it is not published on the rate-limits reference.
+higher_limits:
+  available: true
+  process: contact the Optimizely Support Team
+  url: https://support.optimizely.com/hc/en-us/categories/25425312908301-Data-Platform
+cross_reference:
+  - conventions/zaius-conventions.yml
+  - errors/zaius-problem-types.yml

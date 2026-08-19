@@ -1,0 +1,49 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Objects API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Objects",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update Object",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/objects/:object_name",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "name of the object"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update an object (for example, Concert Tickets or Reviews). Use the Objects endpoint to update the top-level order summary fields without generating events."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

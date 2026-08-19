@@ -1,11 +1,19 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
-source: npm registry (ZaiusInc / @zaiusinc scope) + ODP SDK docs
+source: registry.npmjs.org metadata (@zaiusinc/*, @optimizely/ocp-cli*, @optimizely-opal/*) + ODP/OCP SDK docs
+checked: '2026-08-13'
+note: >-
+  Zaius shipped its client libraries under the @zaiusinc npm scope; after the Optimizely acquisition the
+  tooling line moved to the @optimizely and @optimizely-opal scopes while the repositories stayed in the
+  ZaiusInc GitHub org. Versions and publish dates below are read from the npm registry metadata endpoint.
+  No first-party ODP client library exists for Python, Ruby, Java, PHP, Go, .NET or Rust — JavaScript /
+  TypeScript is the only supported language.
 packages:
   - language: javascript
     registry: npm
     name: "@zaiusinc/node-sdk"
     version: 3.0.0
+    published: '2025-11-19'
     url: https://www.npmjs.com/package/@zaiusinc/node-sdk
     repository: https://github.com/ZaiusInc/node-sdk
     install: npm install @zaiusinc/node-sdk
@@ -15,21 +23,71 @@ packages:
     registry: npm
     name: "@zaiusinc/react-native-sdk"
     version: 1.2.0
+    published: '2021-07-06'
     url: https://www.npmjs.com/package/@zaiusinc/react-native-sdk
     docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/get-started-with-react-native-sdk
     install: npm install --save @zaiusinc/react-native-sdk @react-native-async-storage/async-storage react-native-push-notification
     description: ODP React Native SDK module for tracking events and customer data in React Native apps.
     official: true
+    decay_signal: >-
+      Last published 2021-07-06 — before the Optimizely rebrand of Zaius to ODP. Its npm description still
+      points at the retired docs.developers.zaius.com host. The React Native SDK is documented as current
+      but has had no release in roughly five years.
   - language: javascript
     registry: npm
     name: "@zaiusinc/app-sdk"
     version: 3.4.1
+    published: '2026-05-22'
     url: https://www.npmjs.com/package/@zaiusinc/app-sdk
     repository: https://github.com/ZaiusInc/app-sdk
     install: npm install @zaiusinc/app-sdk
     description: Optimizely Connect Platform (OCP) App SDK and interfaces for building ODP integrations.
     official: true
-web_tag:
-  name: ODP Web SDK (JavaScript tag)
-  docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/get-started-with-web-sdk
-  note: The ODP Web SDK is delivered as an on-page JavaScript tag rather than an npm package.
+  - language: javascript
+    registry: npm
+    name: "@optimizely/ocp-cli-v2"
+    version: 2.0.11
+    published: '2026-07-28'
+    url: https://www.npmjs.com/package/@optimizely/ocp-cli-v2
+    repository: https://github.com/ZaiusInc/ocp-cli
+    install: npm install -g @optimizely/ocp-cli-v2
+    binary: ocp
+    description: Optimizely Connect Platform command line interface (v2 line — current).
+    official: true
+    cross_reference: cli/zaius-cli.yml
+  - language: javascript
+    registry: npm
+    name: "@optimizely/ocp-cli"
+    version: 1.4.3
+    published: '2026-04-03'
+    url: https://www.npmjs.com/package/@optimizely/ocp-cli
+    repository: https://github.com/ZaiusInc/ocp-cli
+    install: npm install -g @optimizely/ocp-cli
+    binary: ocp
+    description: Optimizely Connect Platform command line interface (v1 line — superseded by ocp-cli-v2).
+    official: true
+    superseded_by: "@optimizely/ocp-cli-v2"
+  - language: javascript
+    registry: npm
+    name: "@optimizely-opal/opal-tool-ocp-sdk"
+    version: 1.1.16
+    published: '2026-07-29'
+    url: https://www.npmjs.com/package/@optimizely-opal/opal-tool-ocp-sdk
+    repository: https://github.com/ZaiusInc/opal-tool-ocp-sdk
+    install: npm install @optimizely-opal/opal-tool-ocp-sdk
+    description: OCP SDK for building Optimizely Opal agent tools that run on the Connect Platform against ODP.
+    official: true
+  - language: javascript
+    registry: cdn
+    name: ODP Web SDK / JavaScript tag (zaius-min.js)
+    version: null
+    published: null
+    url_pattern: https://<cdn-host>.cloudfront.net/v2/<trackerId>/zaius-min.js
+    docs: https://docs.developers.optimizely.com/optimizely-data-platform/docs/implement-the-odp-javascript-tag
+    description: The on-page ODP JavaScript tag / Web SDK, served per account from CloudFront.
+    official: true
+    note: >-
+      Distributed as an unpinned CDN script, not a registry package — the URL carries the account Tracker ID
+      but no version, so the browser always receives whatever build is current and a consumer cannot tell
+      which version they are running. There is no registry metadata endpoint to query and no jsDelivr/unpkg
+      mirror, so version and published are recorded as null after checking, not left unstated.

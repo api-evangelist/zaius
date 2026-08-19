@@ -1,0 +1,535 @@
+{
+  "item": [
+    {
+      "id": "8a639656-c9d2-47b5-b34a-1e746dad7325",
+      "name": "Customers",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "2483b0d4-297e-4101-8328-e16984fc1dd3",
+          "name": "Get Customer Information",
+          "request": {
+            "name": "Get Customer Information",
+            "description": {
+              "content": "Get the attributes and identifiers associated with a customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "key_0",
+                  "value": "<string>",
+                  "description": "(Required) The name and value for any single identifier. Replace this with any valid identifier (for example, email, vuid, and so on)."
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "850c4d0b-c44a-45bb-bf68-c352ba64cc22",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vuid",
+                      "value": "7367361510212356712212576900906231"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"attributes\": {\n    \"first_name\": \"Johnny\",\n    \"last_name\": \"Test\",\n    \"email\": \"sample@test.com\",\n    \"phone\": \"555-867-5309\",\n    \"street1\": \"123 Fake St\",\n    \"street2\": \"Apt 101\",\n    \"city\": \"Boston\",\n    \"state\": \"MA\",\n    \"zip\": \"02101\",\n    \"country\": \"USA\",\n    \"timezone\": \"America/New_York\",\n    \"gender\": \"M\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "3b9e6742-1933-4826-959a-dc14001d38a6",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vuid",
+                      "value": "7367361510212356712212576900906231"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "74751dc3-bf2b-495a-9926-29b322c08da0",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vuid",
+                      "value": "7367361510212356712212576900906231"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "34664b6a-69c5-4ec3-bcb0-5db3d68b539c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "vuid",
+                      "value": "7367361510212356712212576900906231"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "c5a3a6da-2f29-4bb4-88ef-18a09d6630e7",
+          "name": "Create and update customers",
+          "request": {
+            "name": "Create and update customers",
+            "description": {
+              "content": "Update the attributes and identifiers of a customer.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "profiles"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"attributes\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\"\n    }\n  },\n  {\n    \"attributes\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\"\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "63aa1b3e-3c32-479c-9060-b5e6c065cb7c",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attributes\": {\n      \"first_name\": \"Johnny\",\n      \"last_name\": \"Test\",\n      \"email\": \"sample@test.com\",\n      \"phone\": \"555-867-5309\",\n      \"street1\": \"123 Fake St\",\n      \"street2\": \"Apt 101\",\n      \"city\": \"Boston\",\n      \"state\": \"MA\",\n      \"zip\": \"02101\",\n      \"country\": \"USA\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"M\"\n    }\n  },\n  {\n    \"attributes\": {\n      \"first_name\": \"Jenny\",\n      \"last_name\": \"Example\",\n      \"email\": \"example@notreal.com\",\n      \"phone\": \"555-555-5555\",\n      \"street1\": \"456 Imaginary Ln\",\n      \"city\": \"Leesburg\",\n      \"state\": \"Virginia\",\n      \"zip\": \"20175\",\n      \"country\": \"United States\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"F\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"status\": 6653,\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b47029b2-249b-4080-b167-b2a32492cb04",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attributes\": {\n      \"first_name\": \"Johnny\",\n      \"last_name\": \"Test\",\n      \"email\": \"sample@test.com\",\n      \"phone\": \"555-867-5309\",\n      \"street1\": \"123 Fake St\",\n      \"street2\": \"Apt 101\",\n      \"city\": \"Boston\",\n      \"state\": \"MA\",\n      \"zip\": \"02101\",\n      \"country\": \"USA\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"M\"\n    }\n  },\n  {\n    \"attributes\": {\n      \"first_name\": \"Jenny\",\n      \"last_name\": \"Example\",\n      \"email\": \"example@notreal.com\",\n      \"phone\": \"555-555-5555\",\n      \"street1\": \"456 Imaginary Ln\",\n      \"city\": \"Leesburg\",\n      \"state\": \"Virginia\",\n      \"zip\": \"20175\",\n      \"country\": \"United States\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"F\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "b17307ea-fc01-4e1b-bc13-c560428d4662",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attributes\": {\n      \"first_name\": \"Johnny\",\n      \"last_name\": \"Test\",\n      \"email\": \"sample@test.com\",\n      \"phone\": \"555-867-5309\",\n      \"street1\": \"123 Fake St\",\n      \"street2\": \"Apt 101\",\n      \"city\": \"Boston\",\n      \"state\": \"MA\",\n      \"zip\": \"02101\",\n      \"country\": \"USA\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"M\"\n    }\n  },\n  {\n    \"attributes\": {\n      \"first_name\": \"Jenny\",\n      \"last_name\": \"Example\",\n      \"email\": \"example@notreal.com\",\n      \"phone\": \"555-555-5555\",\n      \"street1\": \"456 Imaginary Ln\",\n      \"city\": \"Leesburg\",\n      \"state\": \"Virginia\",\n      \"zip\": \"20175\",\n      \"country\": \"United States\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"F\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "65bf0ad6-f958-4482-b8e0-df7963593b6c",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "profiles"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"attributes\": {\n      \"first_name\": \"Johnny\",\n      \"last_name\": \"Test\",\n      \"email\": \"sample@test.com\",\n      \"phone\": \"555-867-5309\",\n      \"street1\": \"123 Fake St\",\n      \"street2\": \"Apt 101\",\n      \"city\": \"Boston\",\n      \"state\": \"MA\",\n      \"zip\": \"02101\",\n      \"country\": \"USA\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"M\"\n    }\n  },\n  {\n    \"attributes\": {\n      \"first_name\": \"Jenny\",\n      \"last_name\": \"Example\",\n      \"email\": \"example@notreal.com\",\n      \"phone\": \"555-555-5555\",\n      \"street1\": \"456 Imaginary Ln\",\n      \"city\": \"Leesburg\",\n      \"state\": \"Virginia\",\n      \"zip\": \"20175\",\n      \"country\": \"United States\",\n      \"timezone\": \"America/New_York\",\n      \"gender\": \"F\"\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.us1.odp.optimizely.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1a6d40d2-7268-4a92-ab54-05393113a31f",
+    "name": "Advanced Compliance Customers API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Advanced",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,11 +1,52 @@
-generated: '2026-07-21'
-method: generated
+generated: '2026-08-13'
+method: searched
+source: https://github.com/optimizely/ocp-skills + generated skills grounded in openapi/*.yml
+note: >-
+  Optimizely publishes first-party Agent Skills for the Connect Platform (the app platform that runs against
+  ODP) in the optimizely/ocp-skills GitHub repo, following the agentskills.io SKILL.md standard and installed
+  through the Claude Code / GitHub Copilot / Codex plugin marketplaces. Those four are saved verbatim under
+  skills/vendor/. No provider-published skill covers the ODP /v3 REST or GraphQL data APIs directly, so the
+  two API-flow skills below remain generated from the OpenAPIs in this repo.
+vendor_skills:
+  method: searched
+  source: https://github.com/optimizely/ocp-skills
+  format: agentskills.io SKILL.md
+  install:
+    claude_code: "/plugin marketplace add optimizely/ocp-skills  ->  /plugin install ocp-skills@ocp-skills"
+    github_copilot: copilot plugin marketplace add optimizely/ocp-skills
+    codex: codex plugin marketplace add optimizely/ocp-skills
+    cursor: git clone https://github.com/optimizely/ocp-skills ~/.cursor/ocp-skills
+  skills:
+    - file: vendor/optimizely-ocp-app-development.md
+      name: ocp-app-development
+      version: 0.1.0
+      description: Building, modifying and debugging OCP apps — functions, jobs, data sync sources/destinations, lifecycle hooks, OAuth flows, settings forms, Opal tools, CMS UI extensions, ODP schema extensions.
+      source: https://raw.githubusercontent.com/optimizely/ocp-skills/main/skills/ocp-app-development/SKILL.md
+      http_status: 200
+    - file: vendor/optimizely-ocp-local-testing.md
+      name: ocp-local-testing
+      version: 0.1.0
+      description: Running and testing an OCP app locally with `ocp dev` before deploying.
+      source: https://raw.githubusercontent.com/optimizely/ocp-skills/main/skills/ocp-local-testing/SKILL.md
+      http_status: 200
+    - file: vendor/optimizely-ocp-node22-runtime-migration.md
+      name: ocp-node22-runtime-migration
+      description: Migrating an OCP app from the node18 to the node22 runtime, SDK 1.x to 2.x, with an optional path to 3.x.
+      source: https://raw.githubusercontent.com/optimizely/ocp-skills/main/skills/ocp-node22-runtime-migration/SKILL.md
+      http_status: 200
+    - file: vendor/optimizely-ocp-app-sdk-v3-migration.md
+      name: ocp-app-sdk-v3-migration
+      description: Migrating an OCP app from @zaiusinc/app-sdk 2.x to 3.x on node22 — native fetch, ESLint v9, Jest to vitest.
+      source: https://raw.githubusercontent.com/optimizely/ocp-skills/main/skills/ocp-app-sdk-v3-migration/SKILL.md
+      http_status: 200
 skills:
   - file: zaius-ingest-customers-and-events.md
     name: Ingest customers and events into ODP
+    method: generated
     api: openapi/zaius-customers-openapi.json
     operations: [createupdate-customers, upload-events, update-object, update-products]
   - file: zaius-manage-realtime-segments.md
     name: Manage ODP real-time segments
+    method: generated
     api: openapi/zaius-realtimesegments-openapi.json
     operations: [RealtimeSegments_ListSegments, RealtimeSegments_GetSegment, RealtimeSegments_CreateSegment, RealtimeSegments_ValidateSegment, RealtimeSegments_InstallSegment, RealtimeSegments_UninstallSegment]

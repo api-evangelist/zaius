@@ -1,0 +1,301 @@
+{
+  "item": [
+    {
+      "id": "2afdbbaa-3cff-4f09-9238-bff2a36d4a51",
+      "name": "Orders",
+      "description": {
+        "content": "",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "d4910727-0ed9-45ad-a56e-73d078227694",
+          "name": "Order Purchase/Return/Refund/Cancellation",
+          "request": {
+            "name": "Order Purchase/Return/Refund/Cancellation",
+            "description": {
+              "content": "Upload an order purchase/return/refund/cancellation event to Optimizely Data Platform (ODP).",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "events"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "[\n  {\n    \"action\": \"<string>\",\n    \"identifiers\": {\n      \"key_0\": \"<string>\",\n      \"key_1\": \"<string>\",\n      \"key_2\": \"<string>\",\n      \"key_3\": \"<string>\"\n    },\n    \"type\": \"order\",\n    \"data\": {\n      \"ts\": \"<number>\",\n      \"order\": {\n        \"order_id\": \"<string>\",\n        \"total\": \"<number>\",\n        \"subtotal\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"shipping\": \"<number>\",\n        \"items\": [\n          {\n            \"product_id\": \"<string>\",\n            \"price\": \"<number>\",\n            \"quantity\": \"<number>\",\n            \"discount\": \"<number>\",\n            \"subtotal\": \"<number>\"\n          },\n          {\n            \"product_id\": \"<string>\",\n            \"price\": \"<number>\",\n            \"quantity\": \"<number>\",\n            \"discount\": \"<number>\",\n            \"subtotal\": \"<number>\"\n          }\n        ]\n      }\n    }\n  },\n  {\n    \"action\": \"<string>\",\n    \"identifiers\": {\n      \"key_0\": \"<string>\"\n    },\n    \"type\": \"order\",\n    \"data\": {\n      \"ts\": \"<number>\",\n      \"order\": {\n        \"order_id\": \"<string>\",\n        \"total\": \"<number>\",\n        \"subtotal\": \"<number>\",\n        \"tax\": \"<number>\",\n        \"shipping\": \"<number>\",\n        \"items\": [\n          {\n            \"product_id\": \"<string>\",\n            \"price\": \"<number>\",\n            \"quantity\": \"<number>\",\n            \"discount\": \"<number>\",\n            \"subtotal\": \"<number>\"\n          },\n          {\n            \"product_id\": \"<string>\",\n            \"price\": \"<number>\",\n            \"quantity\": \"<number>\",\n            \"discount\": \"<number>\",\n            \"subtotal\": \"<number>\"\n          }\n        ]\n      }\n    }\n  }\n]",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "c2652d23-b82f-4e35-b472-c23dc33302a3",
+              "name": "Accepted",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"type\": \"order\",\n    \"action\": \"purchase\",\n    \"identifiers\": {\n      \"email\": \"bob@gmail.com\"\n    },\n    \"data\": {\n      \"ts\": 123456789,\n      \"order\": {\n        \"order_id\": \"OR345\",\n        \"total\": 109.65,\n        \"discount\": 5,\n        \"subtotal\": 103,\n        \"tax\": 5.15,\n        \"shipping\": 6.5,\n        \"coupon_code\": \"5OFF\",\n        \"items\": [\n          {\n            \"product_id\": \"2045\",\n            \"price\": 19,\n            \"quantity\": 5,\n            \"discount\": 0,\n            \"subtotal\": 95\n          },\n          {\n            \"product_id\": \"2091\",\n            \"price\": 10,\n            \"quantity\": 1,\n            \"discount\": 2,\n            \"subtotal\": 8\n          }\n        ]\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Accepted",
+              "code": 202,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"title\": \"string\",\n  \"status\": 3297,\n  \"timestamp\": \"string\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a2d92375-ab33-4fc8-a511-c34e7ce40449",
+              "name": "Bad Request",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"type\": \"order\",\n    \"action\": \"purchase\",\n    \"identifiers\": {\n      \"email\": \"bob@gmail.com\"\n    },\n    \"data\": {\n      \"ts\": 123456789,\n      \"order\": {\n        \"order_id\": \"OR345\",\n        \"total\": 109.65,\n        \"discount\": 5,\n        \"subtotal\": 103,\n        \"tax\": 5.15,\n        \"shipping\": 6.5,\n        \"coupon_code\": \"5OFF\",\n        \"items\": [\n          {\n            \"product_id\": \"2045\",\n            \"price\": 19,\n            \"quantity\": 5,\n            \"discount\": 0,\n            \"subtotal\": 95\n          },\n          {\n            \"product_id\": \"2091\",\n            \"price\": 10,\n            \"quantity\": 1,\n            \"discount\": 2,\n            \"subtotal\": 8\n          }\n        ]\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e846e79d-bec1-4423-b56b-579816bca451",
+              "name": "Forbidden",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"type\": \"order\",\n    \"action\": \"purchase\",\n    \"identifiers\": {\n      \"email\": \"bob@gmail.com\"\n    },\n    \"data\": {\n      \"ts\": 123456789,\n      \"order\": {\n        \"order_id\": \"OR345\",\n        \"total\": 109.65,\n        \"discount\": 5,\n        \"subtotal\": 103,\n        \"tax\": 5.15,\n        \"shipping\": 6.5,\n        \"coupon_code\": \"5OFF\",\n        \"items\": [\n          {\n            \"product_id\": \"2045\",\n            \"price\": 19,\n            \"quantity\": 5,\n            \"discount\": 0,\n            \"subtotal\": 95\n          },\n          {\n            \"product_id\": \"2091\",\n            \"price\": 10,\n            \"quantity\": 1,\n            \"discount\": 2,\n            \"subtotal\": 8\n          }\n        ]\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Forbidden",
+              "code": 403,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "cb4cab68-a13e-4526-ab0b-d4af030a2886",
+              "name": "Not Found",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "events"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: apikey",
+                      "type": "text/plain"
+                    },
+                    "key": "x-api-key",
+                    "value": "<API Key>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "[\n  {\n    \"type\": \"order\",\n    \"action\": \"purchase\",\n    \"identifiers\": {\n      \"email\": \"bob@gmail.com\"\n    },\n    \"data\": {\n      \"ts\": 123456789,\n      \"order\": {\n        \"order_id\": \"OR345\",\n        \"total\": 109.65,\n        \"discount\": 5,\n        \"subtotal\": 103,\n        \"tax\": 5.15,\n        \"shipping\": 6.5,\n        \"coupon_code\": \"5OFF\",\n        \"items\": [\n          {\n            \"product_id\": \"2045\",\n            \"price\": 19,\n            \"quantity\": 5,\n            \"discount\": 0,\n            \"subtotal\": 95\n          },\n          {\n            \"product_id\": \"2091\",\n            \"price\": 10,\n            \"quantity\": 1,\n            \"discount\": 2,\n            \"subtotal\": 8\n          }\n        ]\n      }\n    }\n  }\n]",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.us1.odp.optimizely.com/v3",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "apikey",
+    "apikey": [
+      {
+        "key": "key",
+        "value": "x-api-key"
+      },
+      {
+        "key": "value",
+        "value": "{{apiKey}}"
+      },
+      {
+        "key": "in",
+        "value": "header"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "6f4580a3-d682-4b63-859d-a7ad1b7ea5a0",
+    "name": "Advanced Compliance Orders API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "Advanced",
+      "type": "text/plain"
+    }
+  }
+}

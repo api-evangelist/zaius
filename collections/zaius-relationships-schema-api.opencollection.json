@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Relationships schema API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Relationships schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List relations",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/relations",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "List the details of all relationships of a specific object."
+        },
+        {
+          "info": {
+            "name": "Create relationship",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/relations",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object where you want to create the relationship."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a relation between objects in Optimizely Data Platform (ODP)."
+        },
+        {
+          "info": {
+            "name": "Get relation",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/relations/:relation_name",
+            "params": [
+              {
+                "name": "relation_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the relationship."
+              },
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "List the details of a single relationship of a specific object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

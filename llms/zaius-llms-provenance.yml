@@ -1,0 +1,26 @@
+generated: '2026-08-13'
+method: searched
+file: llms/zaius-llms.txt
+source: https://docs.developers.optimizely.com/optimizely-data-platform/llms.txt
+http_status: 200
+bytes: 22932
+content: verbatim
+note: >-
+  Provenance sidecar for the verbatim llms.txt, which is stored byte-for-byte as Optimizely publishes it and
+  therefore carries no frontmatter of its own. Optimizely serves llms.txt per product on the ReadMe docs host
+  — the site root https://docs.developers.optimizely.com/llms.txt is a hard 404, and the real file lives at
+  the product path. This replaces the round-one generated llms.txt (searched beats generated).
+related:
+  - url: https://docs.developers.optimizely.com/optimizely-connect-platform/llms.txt
+    status: 200
+    note: Optimizely Connect Platform index — the app/integration platform that runs against ODP.
+  - url: https://docs.developers.optimizely.com/optimizely-data-platform/llms-full.txt
+    status: 404
+    note: No full-text dump published for ODP.
+  - url: https://docs.developers.optimizely.com/llms.txt
+    status: 404
+    note: Docs-site root has no aggregate llms.txt.
+extras:
+  markdown_pages: >-
+    Every ODP docs page is also served as clean markdown by appending .md to its URL (ReadMe), and each page
+    header points agents at the product llms.txt index.

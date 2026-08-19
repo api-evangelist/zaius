@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Identifiers API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Identifiers",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Create identifier",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/identifiers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create an identifier in Optimizely Data Platform (ODP) to use for user resolution."
+        },
+        {
+          "info": {
+            "name": "Update identifier metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/identifiers",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update metadata for an identifier."
+        },
+        {
+          "info": {
+            "name": "Get identifier metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/identifiers/:field_name",
+            "params": [
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "path",
+                "description": "The field name for the identifier being requested (for example, email)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "The identifier value being requested (for example, test@optimizely.com)."
+              }
+            ]
+          },
+          "docs": "Retrieve metadata for an identifier in Optimizely Data Platform (ODP)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,66 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/local-testing
+product: Optimizely Data Platform (formerly Zaius) / Optimizely Connect Platform
+summary: >-
+  ODP publishes NO test-vs-live key modes, no test fixtures, no hosted test tokens and no time-simulation
+  tooling for its REST/GraphQL data APIs — the /v3 APIs are called against a real ODP account with a real
+  Tracker ID and x-api-key. What Optimizely does publish is a testing story for the Connect Platform apps
+  that run against ODP: a request-gated sandbox ODP account, a local development server, and pre-release
+  installs into test accounts.
+test_mode:
+  supported: false
+  key_prefixes: []
+  note: >-
+    ODP keys are public (Tracker ID) and private, not test/live. There is no documented sandbox key prefix
+    and no documented dry-run parameter on any /v3 operation.
+sandbox_account:
+  available: true
+  access: request-gated
+  detail: >-
+    "A sandbox ODP account to test your app" is available to Connect Platform developers via the same
+    request forms used for a Connect Platform for ODP developer account; the API key arrives in the
+    invitation email. It is not self-serve and it is scoped to app developers, not to general API consumers.
+  source: https://docs.developers.optimizely.com/optimizely-connect-platform/v1.0/docs/ocp-quickstart-overview
+  request_form_docs: https://docs.developers.optimizely.com/optimizely-connect-platform/v1.0/docs/get-started-with-ocp
+local_testing:
+  available: true
+  tool: OCP local testing tool
+  command: ocp dev
+  url: http://localhost:3000
+  source: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/local-testing
+  surfaces:
+    - App Settings (preview and test the settings form)
+    - Functions (test webhook and HTTP functions with custom payloads)
+    - Jobs (run jobs manually and view execution history)
+    - Destinations (test data sync destination configuration)
+    - Sources (view source schemas)
+    - Opal Tools (test HTTP tool calls with custom payloads)
+    - CMS UI Extensions (beta)
+    - Console, Settings, Secrets, KV Store, Shared KV, Notifications, Environment, Deploy
+  features:
+    - Real-time reloading on changes under src/
+    - Detailed logging per source, level and category
+pre_release_installs:
+  supported: true
+  detail: >-
+    Pre-release tags (-dev, -beta) publish an app version without making it public or auto-upgrading
+    existing installs; the CLI installs them directly into a test ODP account by Tracker ID.
+  commands:
+    - ocp directory install my_app@0.0.0-dev <tracker_id>
+    - ocp directory list-installs my_app@0.0.0
+    - ocp directory uninstall my_app@0.0.0-dev <tracker_id>
+  source: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/test-your-app-ocp2
+unit_testing:
+  framework: Vitest (configured in OCP app templates via vitest.config.ts)
+  enforcement: Unit tests run automatically before uploads and during builds; a failing test blocks publishing.
+  source: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/test-your-app-ocp2
+not_published:
+  - test card numbers or bank accounts (ODP is not a payments API)
+  - hosted test tokens
+  - test clocks / time simulation
+  - fixture or trigger tooling for the /v3 REST APIs
+  - a dry-run mode on any documented operation
+cross_reference:
+  - cli/zaius-cli.yml
+  - authentication/zaius-authentication.yml

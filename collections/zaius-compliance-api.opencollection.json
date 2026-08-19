@@ -1,0 +1,140 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Compliance",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "GDPR delete request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/gdpr/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a GDPR compliance delete request for a customer."
+        },
+        {
+          "info": {
+            "name": "CCPA delete request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/ccpa/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a CCPA compliance delete request for a customer."
+        },
+        {
+          "info": {
+            "name": "CCPA opt-out request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/ccpa/optout",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send a CCPA compliance opt-out request for a customer."
+        },
+        {
+          "info": {
+            "name": "LGPD delete request",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/lgpd/delete",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Send an LGPD compliance delete request for a customer."
+        },
+        {
+          "info": {
+            "name": "GDPR request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/gdpr/status/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of a previous GDPR compliance delete request (by request ID)."
+        },
+        {
+          "info": {
+            "name": "CCPA request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/ccpa/status/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of a previous CCPA compliance delete or opt-out request (by request ID)."
+        },
+        {
+          "info": {
+            "name": "LGPD request status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/compliance/lgpd/status/:requestId",
+            "params": [
+              {
+                "name": "requestId",
+                "value": "",
+                "type": "path"
+              }
+            ]
+          },
+          "docs": "Get the status of a previous LGPD compliance delete request (by request ID)."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

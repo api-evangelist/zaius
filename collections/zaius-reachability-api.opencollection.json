@@ -1,0 +1,66 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Reachability API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Reachability",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Update reachability",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/reachability",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Update reachability for a messaging identifier."
+        },
+        {
+          "info": {
+            "name": "Get reachability",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/reachability/:identifier_field_name",
+            "params": [
+              {
+                "name": "identifier_field_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the field that this identifiers falls under (for example, email)."
+              },
+              {
+                "name": "id",
+                "value": "",
+                "type": "query",
+                "description": "A valid messaging identifier (for example, an email address)."
+              }
+            ]
+          },
+          "docs": "Retrieve reachability information for a specific identifier."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

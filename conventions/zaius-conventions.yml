@@ -1,4 +1,4 @@
-generated: '2026-07-21'
+generated: '2026-08-13'
 method: searched
 source: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
 docs:
@@ -32,10 +32,22 @@ batching:
   max_objects_per_request: 500
   note: Bulk data push should be batched; each request may include up to 500 distinct objects.
 rate_limiting:
-  default_limit: 10 requests/second
+  model: per-endpoint-family (not per key, not per account)
+  by_api:
+    events: no limit
+    objects: no limit
+    lists: 10 requests/second
+    profiles: 10 requests/second
+    recommendations: 100 requests/second
+    on_site_graphql: 500 requests/second
   worked_example: 500 objects/request x 10 req/s = 5,000 customer updates/second
   higher_limits: contact Optimizely support
-  signaling: HTTP 429 when exceeded
+  signaling: >-
+    No rate-limit response headers are documented (no X-RateLimit-*, no RateLimit-*, no Retry-After), so an
+    agent gets no runtime quota signal; the rate-limits reference does not state the status code returned on
+    exhaustion either.
+  detail: rate-limits/zaius-rate-limits.yml
+  docs: https://docs.developers.optimizely.com/optimizely-data-platform/reference/rate-limits
 error_envelope:
   format: plain-json
   problem_details: false
@@ -47,3 +59,17 @@ graphql:
 idempotency:
   supported: false
   note: ODP ingestion is upsert-based (customers/objects are created-or-updated by identifier), which is naturally idempotent, but ODP does not document an explicit Idempotency-Key header.
+
+agent_readability:
+  llms_txt: https://docs.developers.optimizely.com/optimizely-data-platform/llms.txt
+  markdown_pages: >-
+    Every ODP docs page is served as clean markdown by appending .md to the page URL (ReadMe), and each page
+    header points at the product llms.txt index.
+  agent_card: none published (see well-known/zaius-well-known.yml)
+  mcp: none published for ODP (see mcp/zaius-mcp.yml)
+cross_reference:
+  - rate-limits/zaius-rate-limits.yml
+  - errors/zaius-problem-types.yml
+  - lifecycle/zaius-lifecycle.yml
+  - authentication/zaius-authentication.yml
+  - sandbox/zaius-sandbox.yml

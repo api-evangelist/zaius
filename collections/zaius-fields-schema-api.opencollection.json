@@ -1,0 +1,93 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Fields schema API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Fields schema",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "List fields",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/fields",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "List the details of all fields for a specific object."
+        },
+        {
+          "info": {
+            "name": "Create field",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/fields",
+            "params": [
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a field on an object in Optimizely Data Platform (ODP)."
+        },
+        {
+          "info": {
+            "name": "Get field",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/schema/objects/:object_name/fields/:field_name",
+            "params": [
+              {
+                "name": "field_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the field."
+              },
+              {
+                "name": "object_name",
+                "value": "",
+                "type": "path",
+                "description": "The name of the object."
+              }
+            ]
+          },
+          "docs": "List the details of a single field for a specific object."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

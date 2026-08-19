@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Recommendations API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Recommendations",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Recommended Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/recommendations/products",
+            "params": [
+              {
+                "name": "{identifier}=identifier_value",
+                "value": "",
+                "type": "query",
+                "description": "The identifier type and its value. Acceptable identifier types include: `vuid`, `email`, `zaiusalias`, and `customer_id`."
+              },
+              {
+                "name": "product_ids",
+                "value": "",
+                "type": "query",
+                "description": "A comma-separated list of product IDs. Using the `product_ids` parameter allows you to generate recommended products based on the product IDs passed in."
+              },
+              {
+                "name": "type",
+                "value": "",
+                "type": "query",
+                "description": "The type of recommendation requested. Acceptable values are: `personal` and `contextual`."
+              },
+              {
+                "name": "criteria",
+                "value": "",
+                "type": "query",
+                "description": "Filter criteria applied to the recommendations returned. you can use any field on the product schema to filter. See above for the filter construct."
+              },
+              {
+                "name": "sort_by",
+                "value": "",
+                "type": "query",
+                "description": "Product field to sort by, which can be any base or custom field defined in your Product schema. Default sort is highest to lowest recommendation rank. Changing this will not change which products are returned, only the order in which they display in the array."
+              },
+              {
+                "name": "order",
+                "value": "",
+                "type": "query",
+                "description": "Options are `asc` and `desc`. Order in which to sort the resulting products. Changing this will not change which products are returned, only the order in which they display in the array. This will not change the order of products if there is no sort specified."
+              },
+              {
+                "name": "limit",
+                "value": "",
+                "type": "query",
+                "description": "The number of products to return. Must be an integer value from 1 to 100. Default is 10."
+              }
+            ]
+          },
+          "docs": "Get recommendations for a customer or product."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

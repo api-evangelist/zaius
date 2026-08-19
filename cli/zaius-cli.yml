@@ -1,0 +1,168 @@
+generated: '2026-08-13'
+method: searched
+source: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-cli-command-reference
+docs_updated: '2026-07-23'
+name: OCP CLI
+binary: ocp
+scope: >-
+  The OCP CLI is the first-party command-line interface for Optimizely Connect Platform — the app and
+  integration platform for Optimizely Data Platform (formerly Zaius), whose SDK (@zaiusinc/app-sdk) and
+  repositories still live under the ZaiusInc GitHub org. It manages the lifecycle of apps that run against
+  ODP accounts (identified by Tracker ID). It is NOT a CLI for the ODP REST data APIs themselves — there is
+  no published command-line client for /v3 events, profiles, objects or segments.
+docs:
+  command_reference: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-cli-command-reference
+  environment_setup: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/configure-your-development-environment-ocp2
+  v2_migration: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/ocp-cli-v2-migration
+  local_testing: https://docs.developers.optimizely.com/optimizely-connect-platform/docs/local-testing
+install:
+  - method: install-script
+    platform: macos,linux
+    command: curl -fsSL https://cli.ocp.optimizely.com/install.sh | bash
+    note: Downloads the latest OCP CLI release, verifies the tarball checksum, installs to ~/.local/share/ocp and adds `ocp` to PATH. Ships its own runtime, independent of any local Node.js install.
+  - method: install-script
+    platform: windows
+    command: PowerShell install script (see environment_setup docs)
+  - method: npm
+    command: npm install -g @optimizely/ocp-cli-v2
+    package: https://www.npmjs.com/package/@optimizely/ocp-cli-v2
+  - method: npx
+    command: npx @optimizely/ocp-cli-v2 app init
+  - method: npm
+    command: npm install -g @optimizely/ocp-cli
+    package: https://www.npmjs.com/package/@optimizely/ocp-cli
+    note: v1 line; superseded by ocp-cli-v2.
+credentials:
+  file: ~/.ocp/credentials.json
+  shape: '{"apiKey": "<value-from-invitation>"}'
+  source: OCP developer account invitation email
+requirements:
+  - Node.js 22+ for app development (CLI itself bundles its runtime)
+  - A package manager (Yarn, Yarn Berry, npm, pnpm or Bun on Node 22+; Yarn 1 on older runtimes)
+  - Git (required for the CLI to build an app)
+namespaces:
+  - name: accounts
+    commands:
+      - name: whoami
+        description: Returns your account information.
+      - name: whois
+        params: <user>
+        description: Returns basic account information for a specific user.
+  - name: app
+    commands:
+      - name: init
+        params: <appId>
+        description: Creates a new app project and initializes the app.
+      - name: logs
+        params: <appId> | <buildId>
+        description: Returns app logs.
+      - name: getLogLevel
+        params: <appId@appVersion>
+        description: Returns the log level for an app version.
+      - name: setLogLevel
+        params: <appId@appVersion> <logLevel>
+        description: Sets the log level (debug, info, warn, error, never).
+      - name: package
+        params: <path>
+        description: Prepares a package for manual upload.
+      - name: prepare
+        params: <path>
+        description: Validates, packages, uploads and builds an app to prepare for publishing.
+      - name: register
+        params: <id> <name>
+        description: Registers an app version (--availability sets the region, default US).
+      - name: validate
+        params: <path>
+        description: Validates an app locally.
+      - name: abandon
+        params: <appId@appVersion>
+        description: Ceases processing of an unpublished app version.
+  - name: availability
+    commands:
+      - name: list
+        description: Lists all availability regions (US, EU, AU).
+  - name: dev-server
+    commands:
+      - name: start
+        description: Starts the local development server with configuration options.
+  - name: directory
+    commands:
+      - name: publish
+        params: <appId@appVersion>
+        description: Publishes a reviewed and approved app version.
+      - name: unpublish
+        params: <appId@appVersion>
+        description: Unpublishes an app version (uninstalls everywhere and undeploys).
+      - name: info
+        params: <appId>
+        description: Gets information about an app.
+      - name: install
+        params: <appId@appVersion> <trackerId>
+        description: Installs a specific app version into an ODP account by Tracker ID.
+      - name: uninstall
+        params: <appId> <trackerId>
+        description: Uninstalls an app from an account.
+      - name: upgrade
+        params: <appId> <trackerId>
+        description: Upgrades an install to a specific app version.
+      - name: list
+        params: <appId>
+        description: Lists registered app versions.
+      - name: listInstalls
+        params: <appId@appVersion>
+        description: Lists installations of a specific app version.
+      - name: listFunctions
+        params: <appId> <trackerId>
+        description: Lists the functions exposed by an app installation.
+      - name: listGlobalFunctions
+        params: <appId>
+        description: Lists the global functions exposed by an app.
+      - name: status
+        params: <appId@appVersion>
+        description: Gets the status of an app ID and version.
+  - name: env
+    commands:
+      - name: get
+        description: Gets the current environment of the OCP CLI.
+      - name: set
+        params: <env>
+        description: Sets the current environment for the OCP CLI.
+  - name: jobs
+    commands:
+      - name: list
+        params: <appId>
+        description: Lists jobs.
+      - name: terminate
+        params: <jobId>
+        description: Terminates a job.
+      - name: trigger
+        params: <appId@appVersion> <jobName> <trackerId>
+        description: Triggers a job for a given ODP account.
+  - name: review
+    commands:
+      - name: list
+        params: <appId>
+        description: Lists app versions currently under review.
+      - name: open
+        params: <appId@appVersion>
+        description: Opens a review in your browser.
+top_level_commands:
+  - name: dev
+    description: Starts the local development server for OCP apps (quick start; see dev-server start for options).
+  - name: autocomplete
+    description: Displays shell autocompletion installation instructions (Bash, Zsh, PowerShell 7+).
+  - name: update
+    description: Updates the OCP CLI (--available lists available versions).
+  - name: -h / --help
+    description: Contextual help for any command or namespace.
+  - name: -v / --version
+    description: Displays the installed OCP CLI version.
+key_flows:
+  - name: Scaffold and publish an ODP integration app
+    steps: [ocp app init <appId>, ocp dev, ocp app validate <path>, ocp app prepare <path>, ocp directory publish <appId@appVersion>]
+  - name: Install a pre-release build into a test ODP account
+    steps: ["ocp directory install my_app@0.0.0-dev <tracker_id>", "ocp directory list-installs my_app@0.0.0"]
+cross_reference:
+  - packages/zaius-packages.yml
+  - sandbox/zaius-sandbox.yml
+  - skills/_index.yml

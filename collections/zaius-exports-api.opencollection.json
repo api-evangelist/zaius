@@ -1,0 +1,94 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Advanced Compliance Exports API",
+    "version": "v3"
+  },
+  "request": {
+    "auth": {
+      "type": "apikey",
+      "key": "x-api-key",
+      "value": "{{x-api-key}}",
+      "placement": "header"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Exports",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Start Data Export Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/exports",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export objects and events data from Optimizely to Amazon S3."
+        },
+        {
+          "info": {
+            "name": "Start Segment Members Export Job",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.us1.odp.optimizely.com/v3/export-segment-members",
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Export segment membership data from Optimizely to Amazon S3."
+        },
+        {
+          "info": {
+            "name": "Get Data Export Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/exports/:exportJobId",
+            "params": [
+              {
+                "name": "exportJobId",
+                "value": "",
+                "type": "path",
+                "description": "The export job ID to check. Example: Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+              }
+            ]
+          },
+          "docs": "Fetch the status of a data export request."
+        },
+        {
+          "info": {
+            "name": "Get Segment Export Job Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.us1.odp.optimizely.com/v3/export-segment-members/:exportJobId",
+            "params": [
+              {
+                "name": "exportJobId",
+                "value": "",
+                "type": "path",
+                "description": "The export job ID to check. Example: \"3aab9524-5248-45f9-8102-0399872a921e\"."
+              }
+            ]
+          },
+          "docs": "Fetch the status of a segment export request."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
