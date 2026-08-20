@@ -39,6 +39,17 @@ tags:
 - Marketing
 - Personalization
 - Segmentation
+- E-Commerce
+- Customer Data
+- Real-Time Audiences
+- Event
+tags_raw:
+- Company
+- Customer Data Platform
+- CDP
+- Marketing
+- Personalization
+- Segmentation
 - Ecommerce
 - Customer Data
 - Real-Time Audiences
@@ -97,6 +108,8 @@ apis:
   humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
   baseURL: https://api.us1.odp.optimizely.com/v3
   tags:
+  - Event
+  tags_raw:
   - Events
   properties:
   - type: OpenAPI
@@ -107,6 +120,8 @@ apis:
   humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
   baseURL: https://api.us1.odp.optimizely.com/v3
   tags:
+  - Export
+  tags_raw:
   - Exports
   properties:
   - type: OpenAPI
@@ -137,6 +152,8 @@ apis:
   humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
   baseURL: https://api.us1.odp.optimizely.com/v3
   tags:
+  - List
+  tags_raw:
   - Lists
   properties:
   - type: OpenAPI
@@ -167,6 +184,8 @@ apis:
   humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
   baseURL: https://api.us1.odp.optimizely.com/v3
   tags:
+  - Order
+  tags_raw:
   - Orders
   properties:
   - type: OpenAPI
@@ -177,6 +196,8 @@ apis:
   humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
   baseURL: https://api.us1.odp.optimizely.com/v3
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
