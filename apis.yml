@@ -193,18 +193,6 @@ apis:
   properties:
   - type: OpenAPI
     url: openapi/zaius-objects-api-openapi.yml
-- aid: zaius:zaius-orders-api
-  name: Zaius Orders API
-  description: The Orders API from Zaius — 1 operation(s) for orders.
-  humanURL: https://docs.developers.optimizely.com/optimizely-data-platform/reference/introduction
-  baseURL: https://api.us1.odp.optimizely.com/v3
-  tags:
-  - Order
-  tags_raw:
-  - Orders
-  properties:
-  - type: OpenAPI
-    url: openapi/zaius-orders-api-openapi.yml
 - aid: zaius:zaius-products-api
   name: Zaius Products API
   description: The Products API from Zaius — 1 operation(s) for products.
