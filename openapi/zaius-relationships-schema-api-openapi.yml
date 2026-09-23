@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Relationships schema API
+  title: Advanced Relationships schema API
   description: Advanced
   version: v3
 servers:
@@ -174,6 +174,47 @@ paths:
               example: '{"message": "Forbidden"}'
 components:
   schemas:
+    Relation:
+      required:
+      - child_object
+      - name
+      - display_name
+      - public_read
+      - fields
+      type: object
+      properties:
+        child_object:
+          type: string
+          example: child
+          description: The name of the child object.
+        name:
+          type: string
+          example: relation_name
+          description: The name of the relationship (for example, ticket).
+        display_name:
+          type: string
+          example: Relation Display Name
+          description: The human-readable name of the field (for example, Ticket).
+        public_read:
+          type: string
+          example: false
+          default: false
+          description: Enable access with the API public key.
+        join_fields:
+          type: array
+          items:
+            required:
+            - parent
+            type: object
+            properties:
+              parent:
+                type: string
+                example: id
+                description: The name of the object that links to the child object (for example, id).
+              child:
+                type: string
+                example: child_id
+                description: The name of the child object that links to this object (for example, ticket_id).
     Object:
       required:
       - name
@@ -241,47 +282,6 @@ components:
                       type: string
                       example: child_id
           description: an array of relations objects
-    Relation:
-      required:
-      - child_object
-      - name
-      - display_name
-      - public_read
-      - fields
-      type: object
-      properties:
-        child_object:
-          type: string
-          example: child
-          description: The name of the child object.
-        name:
-          type: string
-          example: relation_name
-          description: The name of the relationship (for example, ticket).
-        display_name:
-          type: string
-          example: Relation Display Name
-          description: The human-readable name of the field (for example, Ticket).
-        public_read:
-          type: string
-          example: false
-          default: false
-          description: Enable access with the API public key.
-        join_fields:
-          type: array
-          items:
-            required:
-            - parent
-            type: object
-            properties:
-              parent:
-                type: string
-                example: id
-                description: The name of the object that links to the child object (for example, id).
-              child:
-                type: string
-                example: child_id
-                description: The name of the child object that links to this object (for example, ticket_id).
     Error:
       type: object
       properties:

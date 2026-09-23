@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Object schema API
+  title: Advanced Object schema API
   description: Advanced
   version: v3
 servers:

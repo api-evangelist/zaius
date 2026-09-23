@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Products API
-  description: Advanced
+  title: Products API
+  description: Products
   version: v3
 servers:
 - url: https://api.us1.odp.optimizely.com/v3
@@ -68,6 +68,21 @@ paths:
               example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
+    403Response:
+      type: object
+      properties:
+        message:
+          type: string
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
     40xResponse:
       type: object
       properties:
@@ -90,11 +105,6 @@ components:
                     type: integer
                   message:
                     type: string
-    403Response:
-      type: object
-      properties:
-        message:
-          type: string
     Product:
       required:
       - product_id
@@ -109,16 +119,6 @@ components:
           additionalProperties:
             type: string
             description: Any other product field. Refer to the product reference above for the full list of available fields.
-    GenericUpdateResponse:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
-          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

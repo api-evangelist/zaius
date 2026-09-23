@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Lists API
-  description: Advanced
+  title: Lists API
+  description: Lists
   version: v3
 servers:
 - url: https://api.us1.odp.optimizely.com/v3

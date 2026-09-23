@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Objects API
-  description: Advanced
+  title: Objects API
+  description: Objects
   version: v3
 servers:
 - url: https://api.us1.odp.optimizely.com/v3
@@ -75,6 +75,16 @@ paths:
               example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
     40xResponse:
       type: object
       properties:
@@ -97,25 +107,15 @@ components:
                     type: integer
                   message:
                     type: string
-    403Response:
-      type: object
-      properties:
-        message:
-          type: string
     Object:
       type: object
       additionalProperties:
         type: string
         description: any other field within the object that you wish to update associated with the primary key
-    GenericUpdateResponse:
+    403Response:
       type: object
       properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
+        message:
           type: string
   securitySchemes:
     x-api-key:

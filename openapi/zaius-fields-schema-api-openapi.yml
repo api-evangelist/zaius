@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Fields schema API
+  title: Advanced Fields schema API
   description: Advanced
   version: v3
 servers:

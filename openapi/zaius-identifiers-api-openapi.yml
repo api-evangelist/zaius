@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Identifiers API
+  title: Advanced Identifiers API
   description: Advanced
   version: v3
 servers:
@@ -186,29 +186,32 @@ components:
                   reason:
                     type: string
                     example: already used by another object
-    Identifier:
+    IdenfitierMetadata:
       type: object
-      required:
-      - name
-      - display_name
-      - merge_confidence
       properties:
-        name:
+        identifier_value:
           type: string
-          description: 'The field name of the identifier, ending with one of the known suffixes: id, hash, number, token, alias, address, key.'
-        display_name:
+          example: john@example.com
+        identifier_field_name:
           type: string
-          description: 'The human-readable name, ending with the title case version of the name suffix: ID, Hash, Number, Token, Alias, Address, Key.'
-        public_read:
-          type: boolean
-          description: Enable access with the API public key.
-          default: false
-        merge_confidence:
+          example: email
+        zaius_id:
           type: string
-          description: The level of confidence (`high` or `low`) that this identifier can be used to merge customer profiles together.
-        messaging:
-          type: boolean
-          description: Whether this identifier can be used to message customers in campaigns.
+          example: abcd
+        metadata:
+          type: object
+          properties:
+            mailbox_provider:
+              type: string
+              example: google
+            primary_mailbox:
+              type: boolean
+              example: true
+              default: true
+        metadata_update_ts:
+          type: integer
+          example: 1556582935
+          default: 0
     IdentifierCreated:
       type: object
       properties:
@@ -240,32 +243,29 @@ components:
               type:
                 type: string
                 example: identifier
-    IdenfitierMetadata:
+    Identifier:
       type: object
+      required:
+      - name
+      - display_name
+      - merge_confidence
       properties:
-        identifier_value:
+        name:
           type: string
-          example: john@example.com
-        identifier_field_name:
+          description: 'The field name of the identifier, ending with one of the known suffixes: id, hash, number, token, alias, address, key.'
+        display_name:
           type: string
-          example: email
-        zaius_id:
+          description: 'The human-readable name, ending with the title case version of the name suffix: ID, Hash, Number, Token, Alias, Address, Key.'
+        public_read:
+          type: boolean
+          description: Enable access with the API public key.
+          default: false
+        merge_confidence:
           type: string
-          example: abcd
-        metadata:
-          type: object
-          properties:
-            mailbox_provider:
-              type: string
-              example: google
-            primary_mailbox:
-              type: boolean
-              example: true
-              default: true
-        metadata_update_ts:
-          type: integer
-          example: 1556582935
-          default: 0
+          description: The level of confidence (`high` or `low`) that this identifier can be used to merge customer profiles together.
+        messaging:
+          type: boolean
+          description: Whether this identifier can be used to message customers in campaigns.
     UpdateIdentifier:
       required:
       - identifier_value

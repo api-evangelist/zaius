@@ -1,31 +1,30 @@
 generated: '2026-08-13'
 method: derived
 status: candidate
-note: >-
-  No MCP server exists for Optimizely Data Platform (ODP). Optimizely ships MCP servers for OTHER products:
-  the Experimentation MCP server (Web Experimentation, Personalization, Feature Experimentation, Performance
-  Edge), an Analytics MCP server, and a CMS (SaaS) MCP server. A live probe of the Optimizely hosted MCP
-  endpoint on 2026-08-13 (POST tools/list to https://mcp.optimizely.com/mcp) returned HTTP 401
-  {"code":-401,"message":"Authentication required: OAuth authorization needed."} — it is real and hosted, but
-  it is the Experimentation/Opal surface, not ODP, so it is NOT claimed here. ODP's only agent-facing
-  Optimizely surface is the Real-Time Audience Inspection agent in the Opal Agent Directory, which is not an
-  MCP endpoint. The tools below are candidates derived one-per-operation from the ODP OpenAPIs; see
-  mcp/zaius-tool-crosswalk.yml for their REST bindings.
+note: 'No MCP server exists for Optimizely Data Platform (ODP). Optimizely ships MCP servers for OTHER
+  products: the Experimentation MCP server (Web Experimentation, Personalization, Feature Experimentation,
+  Performance Edge), an Analytics MCP server, and a CMS (SaaS) MCP server. A live probe of the Optimizely
+  hosted MCP endpoint on 2026-08-13 (POST tools/list to https://mcp.optimizely.com/mcp) returned HTTP
+  401 {"code":-401,"message":"Authentication required: OAuth authorization needed."} — it is real and
+  hosted, but it is the Experimentation/Opal surface, not ODP, so it is NOT claimed here. ODP''s only
+  agent-facing Optimizely surface is the Real-Time Audience Inspection agent in the Opal Agent Directory,
+  which is not an MCP endpoint. The tools below are candidates derived one-per-operation from the ODP
+  OpenAPIs; see mcp/zaius-tool-crosswalk.yml for their REST bindings.'
 probes:
-  - url: https://mcp.optimizely.com/mcp
-    method: POST
-    body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
-    http_status: 401
-    finding: Optimizely Experimentation/Opal MCP server (different product) — OAuth required
-    checked: '2026-08-13'
-  - url: https://api.optimizely.com/mcp
-    method: POST
-    http_status: 404
-    checked: '2026-08-13'
-  - url: https://api.us1.odp.optimizely.com/.well-known/oauth-protected-resource
-    method: GET
-    http_status: 404
-    checked: '2026-08-13'
+- url: https://mcp.optimizely.com/mcp
+  method: POST
+  body: '{"jsonrpc":"2.0","id":1,"method":"tools/list"}'
+  http_status: 401
+  finding: Optimizely Experimentation/Opal MCP server (different product) — OAuth required
+  checked: '2026-08-13'
+- url: https://api.optimizely.com/mcp
+  method: POST
+  http_status: 404
+  checked: '2026-08-13'
+- url: https://api.us1.odp.optimizely.com/.well-known/oauth-protected-resource
+  method: GET
+  http_status: 404
+  checked: '2026-08-13'
 server:
   name: zaius-odp
   transport: http
@@ -167,14 +166,7 @@ tools:
   source_operation: openapi/zaius-recommendations-openapi.json#get-recommended-products
 deployment:
   mode: none
-  endpoint: null
-  install: null
-  package: null
-  auth: none
-  verified: probed
+  verified: derived
   tools: 45
-  checked: '2026-08-13'
-  source: live probes of Optimizely MCP hosts + Optimizely MCP product documentation
-  note: >-
-    mode is none because nobody ships an MCP server for ODP. The 401 at https://mcp.optimizely.com/mcp is a
-    sibling product's endpoint and is deliberately NOT recorded as this provider's endpoint.
+  checked: '2026-08-12'
+  source: catalog MCP census

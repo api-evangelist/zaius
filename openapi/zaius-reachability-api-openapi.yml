@@ -1,6 +1,6 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Reachability API
+  title: Advanced Reachability API
   description: Advanced
   version: v3
 servers:
@@ -101,6 +101,16 @@ paths:
               example: '{"message": "Forbidden"}'
 components:
   schemas:
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
     Reachability:
       required:
       - identifier_value
@@ -148,16 +158,6 @@ components:
           properties:
             message:
               type: string
-    GenericUpdateResponse:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
-          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

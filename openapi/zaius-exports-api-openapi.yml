@@ -1,8 +1,8 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Exports API
-  description: Advanced
-  version: v3
+  title: Exports API
+  description: The Export API is an asynchronous API that enables you to export your data to s3 buckets.
+  version: 3.2.2
 servers:
 - url: https://api.us1.odp.optimizely.com/v3
   description: United States
@@ -11,7 +11,7 @@ servers:
 - url: https://api.au1.odp.optimizely.com/v3
   description: Asia-Pacific
 security:
-- x-api-key: []
+- ApiKeyAuth: []
 tags:
 - name: Exports
 paths:
@@ -285,40 +285,41 @@ paths:
                     message: Unable to locate status for the export example.
 components:
   schemas:
-    Sort:
-      type: object
-      description: Sort specification applied to each export file. A single table export may span multiple files.
-      example:
-        field: product.name
-        order: asc
-    DataExportRequest:
+    ExportDefinition:
       required:
-      - delimiter
       - format
+      - id
       type: object
       properties:
+        id:
+          type: string
+          example: 3aab9524-5248-45f9-8102-0399872a921e
         format:
           type: string
-          description: The format of the export. Valid values are "csv" and "parquet".
+          example: csv
           enum:
           - csv
           - parquet
         delimiter:
           type: string
-          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
+          example: comma
           enum:
           - tab
           - comma
           - pipe
+        select:
+          $ref: '#/components/schemas/Select'
+        exportType:
+          type: string
+          example: data
         objects:
           uniqueItems: true
           type: array
-          description: The objects to be exported in full.
+          example:
+          - string
           items:
             type: string
-            description: The objects to be exported in full.
-        select:
-          $ref: '#/components/schemas/Select'
+            example: '["string"]'
     Select:
       required:
       - fields
@@ -360,41 +361,27 @@ components:
             order: asc
           items:
             $ref: '#/components/schemas/Sort'
-    ExportDefinition:
+    SegmentExportRequest:
       required:
+      - delimiter
       - format
-      - id
       type: object
       properties:
-        id:
-          type: string
-          example: 3aab9524-5248-45f9-8102-0399872a921e
         format:
           type: string
-          example: csv
+          description: The format of the segment export. Valid values are "csv" and "parquet".
           enum:
           - csv
           - parquet
         delimiter:
           type: string
-          example: comma
+          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
           enum:
           - tab
           - comma
           - pipe
         select:
-          $ref: '#/components/schemas/Select'
-        exportType:
-          type: string
-          example: data
-        objects:
-          uniqueItems: true
-          type: array
-          example:
-          - string
-          items:
-            type: string
-            example: '["string"]'
+          $ref: '#/components/schemas/SegmentSelect'
     ExportJobStatus:
       required:
       - id
@@ -471,6 +458,40 @@ components:
             type: string
         detail:
           $ref: '#/components/schemas/ExportDefinition'
+    DataExportRequest:
+      required:
+      - delimiter
+      - format
+      type: object
+      properties:
+        format:
+          type: string
+          description: The format of the export. Valid values are "csv" and "parquet".
+          enum:
+          - csv
+          - parquet
+        delimiter:
+          type: string
+          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
+          enum:
+          - tab
+          - comma
+          - pipe
+        objects:
+          uniqueItems: true
+          type: array
+          description: The objects to be exported in full.
+          items:
+            type: string
+            description: The objects to be exported in full.
+        select:
+          $ref: '#/components/schemas/Select'
+    Sort:
+      type: object
+      description: Sort specification applied to each export file. A single table export may span multiple files.
+      example:
+        field: product.name
+        order: asc
     SegmentSelect:
       required:
       - fields
@@ -498,29 +519,8 @@ components:
           description: 'Maximum acceptable delay for segment data freshness in ISO 8601 duration format. Default: PT1H (1 hour). Must be at least an hour.'
           example: PT1H
       description: Specifies the segments to export and the fields to be included.
-    SegmentExportRequest:
-      required:
-      - delimiter
-      - format
-      type: object
-      properties:
-        format:
-          type: string
-          description: The format of the segment export. Valid values are "csv" and "parquet".
-          enum:
-          - csv
-          - parquet
-        delimiter:
-          type: string
-          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
-          enum:
-          - tab
-          - comma
-          - pipe
-        select:
-          $ref: '#/components/schemas/SegmentSelect'
   securitySchemes:
-    x-api-key:
+    ApiKeyAuth:
       type: apiKey
       name: x-api-key
       in: header

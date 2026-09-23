@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Events API
-  description: Advanced
+  title: Events API
+  description: Events
   version: v3
 servers:
 - url: https://api.us1.odp.optimizely.com/v3

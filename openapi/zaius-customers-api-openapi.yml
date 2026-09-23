@@ -1,7 +1,7 @@
-openapi: 3.0.1
+openapi: 3.2.0
 info:
-  title: Advanced Compliance Customers API
-  description: Advanced
+  title: Customers API
+  description: Customers
   version: v3
 servers:
 - url: https://api.us1.odp.optimizely.com/v3
@@ -151,8 +151,6 @@ paths:
                 example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    Profile:
-      type: object
     ProfileUpdateRequest:
       type: object
       properties:
@@ -170,6 +168,8 @@ components:
           format: int32
         timestamp:
           type: string
+    Profile:
+      type: object
   securitySchemes:
     x-api-key:
       type: apiKey
