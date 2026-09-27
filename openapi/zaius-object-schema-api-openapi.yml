@@ -222,6 +222,33 @@ paths:
               example: '{"message": "Forbidden"}'
 components:
   schemas:
+    Error:
+      type: object
+      properties:
+        title:
+          type: string
+          example: Bad Request
+        status:
+          type: integer
+          example: 400
+          default: 0
+        timestamp:
+          type: string
+          example: '2018-08-07T13:44:17.659Z'
+        detail:
+          type: object
+          properties:
+            invalids:
+              type: array
+              items:
+                type: object
+                properties:
+                  field:
+                    type: string
+                    example: name
+                  reason:
+                    type: string
+                    example: already used by another object
     Object:
       required:
       - name
@@ -289,33 +316,6 @@ components:
                       type: string
                       example: child_id
           description: an array of relations objects
-    Error:
-      type: object
-      properties:
-        title:
-          type: string
-          example: Bad Request
-        status:
-          type: integer
-          example: 400
-          default: 0
-        timestamp:
-          type: string
-          example: '2018-08-07T13:44:17.659Z'
-        detail:
-          type: object
-          properties:
-            invalids:
-              type: array
-              items:
-                type: object
-                properties:
-                  field:
-                    type: string
-                    example: name
-                  reason:
-                    type: string
-                    example: already used by another object
   securitySchemes:
     x-api-key:
       type: apiKey

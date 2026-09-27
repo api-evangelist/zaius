@@ -151,13 +151,6 @@ paths:
                 example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    ProfileUpdateRequest:
-      type: object
-      properties:
-        attributes:
-          type: object
-          additionalProperties:
-            type: string
     GenericUpdateResponse:
       type: object
       properties:
@@ -168,6 +161,13 @@ components:
           format: int32
         timestamp:
           type: string
+    ProfileUpdateRequest:
+      type: object
+      properties:
+        attributes:
+          type: object
+          additionalProperties:
+            type: string
     Profile:
       type: object
   securitySchemes:

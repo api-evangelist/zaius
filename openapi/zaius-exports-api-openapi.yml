@@ -320,68 +320,6 @@ components:
           items:
             type: string
             example: '["string"]'
-    Select:
-      required:
-      - fields
-      - object
-      type: object
-      properties:
-        object:
-          type: string
-          description: Target object for this selection filter.
-          example: events
-        fields:
-          type: array
-          description: An array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
-          example:
-          - product.name
-          items:
-            type: string
-            description: An array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
-            example: '["product.name"]'
-        filter:
-          type: object
-          additionalProperties:
-            type: object
-            description: Refer to "Filtering" section.
-            example:
-              field: product.name
-              operator: '='
-              value: '%shoe%'
-          description: Refer to "Filtering" section.
-          example:
-            field: product.name
-            operator: '='
-            value: '%shoe%'
-        sorts:
-          type: array
-          description: Sort specification applied to each export file. A single table export may span multiple files.
-          example:
-            field: product.name
-            order: asc
-          items:
-            $ref: '#/components/schemas/Sort'
-    SegmentExportRequest:
-      required:
-      - delimiter
-      - format
-      type: object
-      properties:
-        format:
-          type: string
-          description: The format of the segment export. Valid values are "csv" and "parquet".
-          enum:
-          - csv
-          - parquet
-        delimiter:
-          type: string
-          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
-          enum:
-          - tab
-          - comma
-          - pipe
-        select:
-          $ref: '#/components/schemas/SegmentSelect'
     ExportJobStatus:
       required:
       - id
@@ -458,6 +396,101 @@ components:
             type: string
         detail:
           $ref: '#/components/schemas/ExportDefinition'
+    SegmentSelect:
+      required:
+      - fields
+      - segments
+      type: object
+      properties:
+        segments:
+          uniqueItems: true
+          type: array
+          description: 'Array of segments to export. Examples: [my_rts_segment, rts:my_rts_segment2, classic:public_segment].'
+          items:
+            type: string
+            description: 'Array of segments to export. Examples: [my_rts_segment, rts:my_rts_segment2, classic:public_segment].'
+        fields:
+          type: array
+          description: Array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
+          example:
+          - customer.email, product.name, qualifications
+          items:
+            type: string
+            description: Array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
+            example: '["customer.email, product.name, qualifications"]'
+        maxDelay:
+          type: string
+          description: 'Maximum acceptable delay for segment data freshness in ISO 8601 duration format. Default: PT1H (1 hour). Must be at least an hour.'
+          example: PT1H
+      description: Specifies the segments to export and the fields to be included.
+    Sort:
+      type: object
+      description: Sort specification applied to each export file. A single table export may span multiple files.
+      example:
+        field: product.name
+        order: asc
+    Select:
+      required:
+      - fields
+      - object
+      type: object
+      properties:
+        object:
+          type: string
+          description: Target object for this selection filter.
+          example: events
+        fields:
+          type: array
+          description: An array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
+          example:
+          - product.name
+          items:
+            type: string
+            description: An array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
+            example: '["product.name"]'
+        filter:
+          type: object
+          additionalProperties:
+            type: object
+            description: Refer to "Filtering" section.
+            example:
+              field: product.name
+              operator: '='
+              value: '%shoe%'
+          description: Refer to "Filtering" section.
+          example:
+            field: product.name
+            operator: '='
+            value: '%shoe%'
+        sorts:
+          type: array
+          description: Sort specification applied to each export file. A single table export may span multiple files.
+          example:
+            field: product.name
+            order: asc
+          items:
+            $ref: '#/components/schemas/Sort'
+    SegmentExportRequest:
+      required:
+      - delimiter
+      - format
+      type: object
+      properties:
+        format:
+          type: string
+          description: The format of the segment export. Valid values are "csv" and "parquet".
+          enum:
+          - csv
+          - parquet
+        delimiter:
+          type: string
+          description: Defaults to "comma". Valid options are "comma", "tab", and "pipe". Not applicable for parquet exports.
+          enum:
+          - tab
+          - comma
+          - pipe
+        select:
+          $ref: '#/components/schemas/SegmentSelect'
     DataExportRequest:
       required:
       - delimiter
@@ -486,39 +519,6 @@ components:
             description: The objects to be exported in full.
         select:
           $ref: '#/components/schemas/Select'
-    Sort:
-      type: object
-      description: Sort specification applied to each export file. A single table export may span multiple files.
-      example:
-        field: product.name
-        order: asc
-    SegmentSelect:
-      required:
-      - fields
-      - segments
-      type: object
-      properties:
-        segments:
-          uniqueItems: true
-          type: array
-          description: 'Array of segments to export. Examples: [my_rts_segment, rts:my_rts_segment2, classic:public_segment].'
-          items:
-            type: string
-            description: 'Array of segments to export. Examples: [my_rts_segment, rts:my_rts_segment2, classic:public_segment].'
-        fields:
-          type: array
-          description: Array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
-          example:
-          - customer.email, product.name, qualifications
-          items:
-            type: string
-            description: Array of fields to export. The array ['*'] captures all fields from select.object, but does not follow any relations.
-            example: '["customer.email, product.name, qualifications"]'
-        maxDelay:
-          type: string
-          description: 'Maximum acceptable delay for segment data freshness in ISO 8601 duration format. Default: PT1H (1 hour). Must be at least an hour.'
-          example: PT1H
-      description: Specifies the segments to export and the fields to be included.
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

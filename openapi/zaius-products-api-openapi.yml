@@ -68,21 +68,20 @@ paths:
               example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    403Response:
+    Product:
+      required:
+      - product_id
       type: object
       properties:
-        message:
+        product_id:
           type: string
-    GenericUpdateResponse:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
-          type: string
+          description: the product_id associated with the product
+        '{product_field}':
+          type: object
+          description: Any other product field. Refer to the product reference above for the full list of available fields.
+          additionalProperties:
+            type: string
+            description: Any other product field. Refer to the product reference above for the full list of available fields.
     40xResponse:
       type: object
       properties:
@@ -105,20 +104,21 @@ components:
                     type: integer
                   message:
                     type: string
-    Product:
-      required:
-      - product_id
+    403Response:
       type: object
       properties:
-        product_id:
+        message:
           type: string
-          description: the product_id associated with the product
-        '{product_field}':
-          type: object
-          description: Any other product field. Refer to the product reference above for the full list of available fields.
-          additionalProperties:
-            type: string
-            description: Any other product field. Refer to the product reference above for the full list of available fields.
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

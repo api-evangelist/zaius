@@ -300,6 +300,13 @@ paths:
                 example: '{"title":"Not Found","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
+    ComplianceResponseBody:
+      type: object
+      properties:
+        request_ids:
+          type: array
+          items:
+            type: string
     IdentifierRequestObject:
       required:
       - identifier_field_name
@@ -319,13 +326,6 @@ components:
           type: string
           description: The type of identifier that you are deleting or opting out.
           example: email
-    ComplianceResponseBody:
-      type: object
-      properties:
-        request_ids:
-          type: array
-          items:
-            type: string
   securitySchemes:
     x-api-key:
       type: apiKey
