@@ -75,11 +75,6 @@ paths:
               example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    403Response:
-      type: object
-      properties:
-        message:
-          type: string
     40xResponse:
       type: object
       properties:
@@ -111,6 +106,11 @@ components:
           type: integer
           format: int32
         timestamp:
+          type: string
+    403Response:
+      type: object
+      properties:
+        message:
           type: string
     Object:
       type: object
