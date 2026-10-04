@@ -246,6 +246,9 @@ apis:
   - type: OpenAPI
     url: openapi/zaius-relationships-schema-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/zaius-capability-edges.yml
+  name: Zaius Business Capability Map
 - type: Website
   url: https://www.optimizely.com/products/data-platform
 - type: DeveloperPortal
