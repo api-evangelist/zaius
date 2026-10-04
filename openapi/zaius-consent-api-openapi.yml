@@ -122,16 +122,6 @@ paths:
                 example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    GenericUpdateResponse:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
-          type: string
     ConsentUpdateRequest:
       required:
       - consent
@@ -166,6 +156,16 @@ components:
             writeOnly: true
           description: (optional) object of key/value pairs, which are added to the generated events
           writeOnly: true
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
     ConsentGetResponse:
       required:
       - consent

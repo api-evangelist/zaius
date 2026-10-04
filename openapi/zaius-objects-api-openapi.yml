@@ -97,6 +97,11 @@ components:
                     type: integer
                   message:
                     type: string
+    Object:
+      type: object
+      additionalProperties:
+        type: string
+        description: any other field within the object that you wish to update associated with the primary key
     GenericUpdateResponse:
       type: object
       properties:
@@ -112,11 +117,6 @@ components:
       properties:
         message:
           type: string
-    Object:
-      type: object
-      additionalProperties:
-        type: string
-        description: any other field within the object that you wish to update associated with the primary key
   securitySchemes:
     x-api-key:
       type: apiKey

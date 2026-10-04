@@ -73,16 +73,6 @@ paths:
                 example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    GenericUpdateResponse:
-      type: object
-      properties:
-        title:
-          type: string
-        status:
-          type: integer
-          format: int32
-        timestamp:
-          type: string
     Event:
       required:
       - action
@@ -110,6 +100,16 @@ components:
             type: string
             description: any additional fields you want to include on the event (for example, product_id)
           description: any additional fields you want to include on the event (for example, product_id)
+    GenericUpdateResponse:
+      type: object
+      properties:
+        title:
+          type: string
+        status:
+          type: integer
+          format: int32
+        timestamp:
+          type: string
   securitySchemes:
     x-api-key:
       type: apiKey

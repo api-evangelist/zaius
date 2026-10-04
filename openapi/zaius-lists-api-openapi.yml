@@ -171,15 +171,6 @@ paths:
                 example: '{"title":"Bad Request","status":404,"timestamp":"2018-09-10T21:07:10-05:00","detail":{"message":"Not found description"}}'
 components:
   schemas:
-    CreateList:
-      required:
-      - name
-      type: object
-      properties:
-        name:
-          type: string
-          description: The name of the list to create.
-          example: My List
     Subscribe:
       required:
       - identifer
@@ -199,6 +190,15 @@ components:
         description: the messaging identifier to act upon (for example. email). Required.
         example:
           email: sample@test.com
+    CreateList:
+      required:
+      - name
+      type: object
+      properties:
+        name:
+          type: string
+          description: The name of the list to create.
+          example: My List
   securitySchemes:
     x-api-key:
       type: apiKey
